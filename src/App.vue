@@ -1,40 +1,34 @@
 <template>
-	<n-config-provider :theme="theme">
-		<n-global-style />
-		<n-card>
-			<n-space>
-				<n-button @click="theme = darkTheme">Dark</n-button>
-				<n-button @click="theme = null">Light</n-button>
-			</n-space>
-		</n-card>
-		<Hello message="Hello World!" />
-		<n-icon size="40">
-			<game-controller-outline />
-		</n-icon>
-		<n-icon size="40" color="#0e7a0d">
-			<game-controller />
-		</n-icon>
-	</n-config-provider>
+	<Home />
 </template>
 
 <script>
-	import Hello from './components/Hello.vue'
-	import { ref } from 'vue'
-	import { darkTheme } from 'naive-ui'
-	import { GameController, GameControllerOutline } from '@vicons/ionicons5'
+	import Home from './views/Home.vue'
 	export default {
-		components: { Hello, GameController, GameControllerOutline },
-		setup() {
-			const theme = ref(null)
-			return { darkTheme, theme }
-		}
+		components: { Home }
 	}
 </script>
 
-<style>
-	.carousel-img {
-		width: 100%;
-		height: 50vh;
-		object-fit: cover;
+<style lang="scss">
+	* {
+		--header-height: 4rem;
+		--space-1: calc(0.25 * 1rem);
+		--space-2: calc(0.5 * 1rem);
+		--space-3: calc(1 * 1rem);
+		--space-4: calc(1.5 * 1rem);
+		--space-5: calc(2 * 1rem);
+		--space-6: calc(3 * 1rem);
+	}
+
+	html,
+	body {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	.container {
+		width: min(92vw, 1440px);
+		margin: auto;
 	}
 </style>
