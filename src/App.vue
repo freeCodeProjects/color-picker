@@ -1,11 +1,35 @@
 <template>
-	<Home />
+	<n-config-provider :theme="theme">
+		<n-global-style />
+		<Home />
+		<ThemeButton :activeTheme="theme" />
+	</n-config-provider>
 </template>
 
 <script>
+	import { ref, provide } from 'vue'
 	import Home from './views/Home.vue'
+	import { darkTheme } from 'naive-ui'
+	import ThemeButton from './components/ui/ThemeButton.vue'
 	export default {
-		components: { Home }
+		components: { Home, ThemeButton },
+		setup() {
+			const theme = ref(null)
+			theme.value = darkTheme
+
+			const toggleTheme = () => {
+				if (theme.value) {
+					theme.value = null
+				} else {
+					theme.value = darkTheme
+				}
+			}
+
+			provide('toggleTheme', toggleTheme)
+			return {
+				theme
+			}
+		}
 	}
 </script>
 
