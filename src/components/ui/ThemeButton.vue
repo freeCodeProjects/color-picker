@@ -1,5 +1,11 @@
 <template>
-	<n-button circle size="large" class="theme-btn" @click="changeTheme">
+	<n-button
+		circle
+		size="large"
+		class="theme-btn"
+		@click="changeTheme"
+		type="primary"
+	>
 		<n-icon size="2rem">
 			<light-icon v-if="activeTheme" />
 			<dark-icon v-else />
@@ -29,9 +35,9 @@
 
 <style lang="scss" scoped>
 	.theme-btn {
-		box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px 0px;
+		box-shadow: rgba(90, 61, 61, 0.12) 0px 2px 8px 0px;
 		position: fixed;
-		bottom: 5vh;
+		bottom: 2.5vh;
 		right: 2.5vw;
 		height: 3.2rem;
 		width: 3.2rem;

@@ -67,5 +67,11 @@
 	.container {
 		width: min(92vw, 1440px);
 		margin: auto;
+		height: inherit;
+	}
+
+	/* reset naive ui css */
+	.n-scrollbar > .n-scrollbar-rail.n-scrollbar-rail--vertical {
+		right: 0px;
 	}
 </style>

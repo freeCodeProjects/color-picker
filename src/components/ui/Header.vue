@@ -1,5 +1,5 @@
 <template>
-	<n-layout-header class="layout-header" bordered>
+	<n-layout-header class="layout-header" bordered position="absolute">
 		<div class="container">
 			<slot></slot>
 		</div>
