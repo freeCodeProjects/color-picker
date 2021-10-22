@@ -11,17 +11,30 @@
 	import Home from './views/Home.vue'
 	import { darkTheme } from 'naive-ui'
 	import ThemeButton from './components/ui/ThemeButton.vue'
+
+	const getInitialTheme = () => {
+		if (
+			localStorage.getItem('theme') &&
+			localStorage.getItem('theme') === 'light'
+		) {
+			return null
+		} else {
+			return darkTheme
+		}
+	}
+
 	export default {
 		components: { Home, ThemeButton },
 		setup() {
-			const theme = ref(null)
-			theme.value = darkTheme
+			const theme = ref(getInitialTheme())
 
 			const toggleTheme = () => {
 				if (theme.value) {
 					theme.value = null
+					localStorage.setItem('theme', 'light')
 				} else {
 					theme.value = darkTheme
+					localStorage.setItem('theme', 'dark')
 				}
 			}
 
