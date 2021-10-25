@@ -9,7 +9,9 @@
 			></span>
 		</div>
 		<div class="palette-info">
-			<div class="palette-info__name">{{ name }}</div>
+			<n-ellipsis :tooltip="false">
+				<span class="palette-info__name">{{ name }}</span>
+			</n-ellipsis>
 			<span class="palette-info__emoji">{{ emoji }}</span>
 		</div>
 		<template #action v-if="showAction">
