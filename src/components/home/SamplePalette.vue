@@ -1,240 +1,35 @@
 <template>
 	<n-scrollbar>
-		<h1>Sample Palette</h1>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente
-			unde eaque. Quidem rerum, omnis eum sunt odit laboriosam reprehenderit
-			voluptas repellat animi doloremque accusamus, hic aspernatur atque rem
-			fugiat! Ratione ullam optio hic distinctio commodi incidunt. Optio sint
-			libero voluptate rem voluptates voluptas saepe non eum, illo aliquam
-			cupiditate.
-		</p>
+		<div class="palettes">
+			<PaletteCard
+				v-for="palette in palettes"
+				:key="palette.id"
+				:name="palette.paletteName"
+				:id="palette.id"
+				:emoji="palette.emoji"
+				:colors="palette.colors"
+			/>
+		</div>
 	</n-scrollbar>
 </template>
 
 <script>
+	import palettes from './../../utils/seedColors'
+	import PaletteCard from './PaletteCard.vue'
 	export default {
+		components: { PaletteCard },
 		setup() {
 			console.log('tab-1')
-			return {}
+			return { palettes }
 		}
 	}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.palettes {
+		gap: 2rem;
+		padding: 1rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	}
+</style>
