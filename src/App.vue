@@ -1,14 +1,13 @@
 <template>
 	<n-config-provider :theme="theme">
 		<n-global-style />
-		<Home />
+		<router-view></router-view>
 		<ThemeButton :activeTheme="theme" />
 	</n-config-provider>
 </template>
 
 <script>
 	import { ref, provide } from 'vue'
-	import Home from './views/Home.vue'
 	import { darkTheme } from 'naive-ui'
 	import ThemeButton from './components/ui/ThemeButton.vue'
 
@@ -24,7 +23,7 @@
 	}
 
 	export default {
-		components: { Home, ThemeButton },
+		components: { ThemeButton },
 		setup() {
 			const theme = ref(getInitialTheme())
 
@@ -49,6 +48,7 @@
 <style lang="scss">
 	* {
 		--header-height: 4rem;
+		--footer-height: 2rem;
 		--space-1: calc(0.25 * 1rem);
 		--space-2: calc(0.5 * 1rem);
 		--space-3: calc(1 * 1rem);
@@ -64,10 +64,21 @@
 		box-sizing: border-box;
 	}
 
+	a {
+		text-decoration: none;
+	}
+
 	.container {
 		width: min(92vw, 1440px);
 		margin: auto;
 		height: inherit;
+	}
+
+	.layout {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100vh;
 	}
 
 	/* reset naive ui css */

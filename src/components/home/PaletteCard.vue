@@ -1,40 +1,42 @@
 <template>
-	<n-card hoverable size="small">
-		<div class="colors">
-			<span
-				class="color"
-				v-for="color in colors"
-				:key="color.name"
-				:style="`background-color: ${color.hexValue}`"
-			></span>
-		</div>
-		<div class="palette-info">
-			<n-ellipsis :tooltip="false">
-				<span class="palette-info__name">{{ name }}</span>
-			</n-ellipsis>
-			<span class="palette-info__emoji">{{ emoji }}</span>
-		</div>
-		<template #action v-if="showAction">
-			<div class="palette-actions">
-				<n-button type="info">
-					<template #icon>
-						<n-icon>
-							<OpenOutline />
-						</n-icon>
-					</template>
-					Update
-				</n-button>
-				<n-button type="error">
-					<template #icon>
-						<n-icon>
-							<TrashBinOutline />
-						</n-icon>
-					</template>
-					Delete
-				</n-button>
+	<router-link :to="`/palette/${id}`">
+		<n-card hoverable size="small">
+			<div class="colors">
+				<span
+					class="color"
+					v-for="color in colors"
+					:key="color.name"
+					:style="`background-color: ${color.hexValue}`"
+				></span>
 			</div>
-		</template>
-	</n-card>
+			<div class="palette-info">
+				<n-ellipsis :tooltip="false">
+					<span class="palette-info__name">{{ name }}</span>
+				</n-ellipsis>
+				<span class="palette-info__emoji">{{ emoji }}</span>
+			</div>
+			<template #action v-if="showAction">
+				<div class="palette-actions">
+					<n-button type="info">
+						<template #icon>
+							<n-icon>
+								<OpenOutline />
+							</n-icon>
+						</template>
+						Update
+					</n-button>
+					<n-button type="error">
+						<template #icon>
+							<n-icon>
+								<TrashBinOutline />
+							</n-icon>
+						</template>
+						Delete
+					</n-button>
+				</div>
+			</template>
+		</n-card>
+	</router-link>
 </template>
 
 <script>
