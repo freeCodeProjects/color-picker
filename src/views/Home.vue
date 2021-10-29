@@ -1,8 +1,8 @@
 <template>
-	<n-layout position="absolute">
+	<div class="layout">
 		<HomeHeader />
 		<HomeContent />
-	</n-layout>
+	</div>
 </template>
 <script>
 	import HomeHeader from '../components/home/HomeHeader.vue'

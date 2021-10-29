@@ -1,9 +1,5 @@
 <template>
-	<n-layout-content
-		content-style="padding: var(--space-3);"
-		position="absolute"
-		style="top: var(--header-height)"
-	>
+	<n-layout-content class="content">
 		<div class="container">
 			<n-tabs
 				type="line"
@@ -40,4 +36,9 @@
 	}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.content {
+		padding: var(--space-3);
+		flex: 1;
+	}
+</style>
