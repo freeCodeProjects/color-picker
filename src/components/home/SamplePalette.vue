@@ -8,6 +8,7 @@
 				:id="palette.id"
 				:emoji="palette.emoji"
 				:colors="palette.colors"
+				category="sample"
 			/>
 		</div>
 	</n-scrollbar>

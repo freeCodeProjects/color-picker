@@ -1,12 +1,12 @@
 <template>
-	<router-link :to="`/palette/${id}`">
+	<router-link :to="`/palette/${id}/?category=${category}`">
 		<n-card hoverable size="small">
 			<div class="colors">
 				<span
 					class="color"
 					v-for="color in colors"
 					:key="color.name"
-					:style="`background-color: ${color.hexValue}`"
+					:style="`background-color: ${color.value}`"
 				></span>
 			</div>
 			<div class="palette-info">
@@ -54,6 +54,10 @@
 			showAction: {
 				type: Boolean,
 				default: false
+			},
+			category: {
+				type: String,
+				required: true
 			}
 		},
 		setup() {

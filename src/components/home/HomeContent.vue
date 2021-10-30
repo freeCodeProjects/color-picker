@@ -4,12 +4,7 @@
 			<n-tabs
 				type="line"
 				size="large"
-				style="
-					display: flex;
-					flex-direction: column;
-					height: inherit;
-					overflow: hidden;
-				"
+				class="tabs"
 				tab-style="flex:0"
 				pane-style="flex:1; overflow: auto; padding: 0"
 			>
@@ -40,5 +35,12 @@
 	.content {
 		padding: var(--space-3);
 		flex: 1;
+	}
+
+	.tabs {
+		display: flex;
+		flex-direction: column;
+		height: inherit;
+		overflow: hidden;
 	}
 </style>

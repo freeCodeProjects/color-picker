@@ -48,7 +48,7 @@
 <style lang="scss">
 	* {
 		--header-height: 4rem;
-		--footer-height: 2rem;
+		--footer-height: 2.5rem;
 		--space-1: calc(0.25 * 1rem);
 		--space-2: calc(0.5 * 1rem);
 		--space-3: calc(1 * 1rem);
@@ -72,6 +72,10 @@
 		width: min(92vw, 1440px);
 		margin: auto;
 		height: inherit;
+
+		@media only screen and(max-width: 36em) {
+			width: 96vw;
+		}
 	}
 
 	.layout {
@@ -79,6 +83,10 @@
 		flex-direction: column;
 		justify-content: space-between;
 		height: 100vh;
+	}
+
+	.cursor-pointer {
+		cursor: pointer;
 	}
 
 	/* reset naive ui css */

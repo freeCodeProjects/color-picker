@@ -12,6 +12,10 @@ const routes = [
 	{
 		path: '/palette/:id',
 		component: Palette,
+		props: (route) => ({
+			id: route.params.id,
+			category: route.query.category
+		}),
 		children: [
 			{
 				path: '',

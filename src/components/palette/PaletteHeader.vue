@@ -1,19 +1,19 @@
 <template>
 	<Header>
-		<div class="palette-header">
-			<Logo />
-		</div>
+		<Logo />
+		<ColorScaleSlider />
+		<ColorFormatSelect />
 	</Header>
 </template>
 
 <script>
 	import Header from '../ui/Header.vue'
 	import Logo from '../ui/Logo.vue'
+	import ColorFormatSelect from './ColorFormatSelect.vue'
+	import ColorScaleSlider from './ColorScaleSlider.vue'
 	export default {
-		components: { Header, Logo },
-		setup() {
-			return {}
-		}
+		components: { Header, Logo, ColorFormatSelect, ColorScaleSlider },
+		setup() {}
 	}
 </script>
 

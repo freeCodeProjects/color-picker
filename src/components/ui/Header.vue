@@ -1,6 +1,6 @@
 <template>
 	<n-layout-header class="header" bordered>
-		<div class="container">
+		<div class="container header-content">
 			<slot></slot>
 		</div>
 	</n-layout-header>
@@ -11,8 +11,12 @@
 <style lang="scss" scoped>
 	.header {
 		height: var(--header-height);
-		padding: var(--space-1) var(--space-4);
 		display: flex;
 		align-items: center;
+	}
+	.header-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 </style>

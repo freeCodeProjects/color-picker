@@ -1,10 +1,10 @@
 <template>
-	<div class="logo">
+	<router-link to="/" class="logo">
 		<img class="logo__image" src="@/assets/logo.png" />
 		<n-gradient-text class="logo__title" type="success">
 			Color Picker
 		</n-gradient-text>
-	</div>
+	</router-link>
 </template>
 
 <style lang="scss" scoped>
