@@ -1,7 +1,7 @@
 <template>
 	<n-layout-footer bordered class="footer">
 		<div class="container">
-			<n-ellipsis tooltip="false" style="max-width: 300px"
+			<n-ellipsis :tooltip="false" style="max-width: 300px"
 				>{{ name }}
 			</n-ellipsis>
 			<div class="emoji">{{ emoji }}</div>
