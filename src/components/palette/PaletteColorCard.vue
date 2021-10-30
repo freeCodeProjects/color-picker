@@ -64,6 +64,8 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+		font-size: 1rem;
+		text-transform: uppercase;
 	}
 	.color__name {
 		padding: 0.25rem 0.5rem;

@@ -1,7 +1,7 @@
 <template>
 	<n-layout-content class="content">
 		<div class="palette">
-			<PaletteColor
+			<PaletteColorCard
 				v-for="color in palette.colors"
 				:color="color"
 				:key="color.name"
@@ -11,9 +11,9 @@
 </template>
 
 <script>
-	import PaletteColor from './PaletteColor.vue'
+	import PaletteColorCard from './PaletteColorCard.vue'
 	export default {
-		components: { PaletteColor },
+		components: { PaletteColorCard },
 		props: {
 			palette: {
 				type: Object,
@@ -33,9 +33,7 @@
 		height: 100%;
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: repeat(auto-fit, minmax(2.5rem, 1fr));
-		font-size: 1rem;
-		text-transform: uppercase;
+		grid-template-rows: repeat(auto-fill, 1fr);
 
 		@media only screen and(max-width: 75em) {
 			grid-template-columns: repeat(4, 1fr);
