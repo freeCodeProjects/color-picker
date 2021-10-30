@@ -7,7 +7,7 @@
 				:key="color.name"
 				:style="`background-color: ${color.value}`"
 			>
-				<div class="color__name">
+				<div class="color__name" :style="`color: ${color.value}`">
 					<n-ellipsis style="max-width: 10rem">{{ color.name }}</n-ellipsis>
 				</div>
 				<div class="color__action fade-animation-parent">
@@ -72,6 +72,7 @@
 
 	.color__name {
 		padding: 0.25rem 0.5rem;
+		mix-blend-mode: difference;
 	}
 
 	.color__action {
