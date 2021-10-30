@@ -1,13 +1,11 @@
 <template>
-	<n-layout-content class="content">
-		<div class="palette">
-			<PaletteColorCard
-				v-for="color in palette.colors"
-				:color="color"
-				:key="color.name"
-			/>
-		</div>
-	</n-layout-content>
+	<div class="palette">
+		<PaletteColorCard
+			v-for="color in palette.colors"
+			:color="color"
+			:key="color.name"
+		/>
+	</div>
 </template>
 
 <script>
@@ -25,10 +23,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.content {
-		flex: 1;
-		overflow: auto;
-	}
 	.palette {
 		height: 100%;
 		display: grid;

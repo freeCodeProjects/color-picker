@@ -34,7 +34,6 @@
 <style lang="scss" scoped>
 	.content {
 		padding: var(--space-3);
-		flex: 1;
 	}
 
 	.tabs {

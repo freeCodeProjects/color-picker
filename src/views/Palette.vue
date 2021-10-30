@@ -1,7 +1,9 @@
 <template>
 	<div class="layout">
 		<PaletteHeader />
-		<router-view :palette="palette"></router-view>
+		<n-layout-content>
+			<router-view :palette="palette"></router-view>
+		</n-layout-content>
 		<PaletteFooter :name="palette.paletteName" :emoji="palette.emoji" />
 	</div>
 </template>
