@@ -68,7 +68,6 @@ import { toRefs } from 'vue';
 	}
 
 	.color-value {
-		color: white;
 		background-blend-mode: difference;
 		font-size: max(1.5rem, 2vw);
 	}

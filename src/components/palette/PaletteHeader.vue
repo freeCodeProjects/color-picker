@@ -1,7 +1,7 @@
 <template>
 	<Header>
 		<Logo />
-		<ColorScaleSlider />
+		<ColorScaleSlider v-if="!$route.params.colorId" />
 		<ColorFormatSelect />
 	</Header>
 </template>

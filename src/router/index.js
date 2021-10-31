@@ -24,7 +24,7 @@ const routes = [
 				component: PaletteDetail
 			},
 			{
-				path: ':colorName',
+				path: ':colorId',
 				name: 'PaletteColor',
 				component: PaletteColor
 			}

@@ -17,7 +17,7 @@
 					class="color__action__more__btn"
 					:to="{
 						name: 'PaletteColor',
-						params: { id, colorName: color.id },
+						params: { id, colorId: color.id, colorValue: color.hex },
 						query: { category: 'sample' }
 					}"
 				>
@@ -44,8 +44,7 @@
 				required: true
 			},
 			id: {
-				type: String,
-				required: true
+				type: String
 			},
 			showMoreBtn: {
 				type: Boolean,
@@ -56,10 +55,6 @@
 			const showCopyModal = ref(false)
 			const colorValue = ref('')
 			const colorFormat = inject('colorFormat')
-
-			watch(colorFormat, (v) => {
-				console.log('format', v)
-			})
 
 			const openCopyModal = (c) => {
 				colorValue.value = c

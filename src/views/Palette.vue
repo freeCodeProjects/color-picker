@@ -34,6 +34,12 @@
 			const colorPalette = ref({})
 			const newPalette = ref({})
 
+			const fetchPalette = () => {
+				if (category.value === 'sample') {
+					fetchSamplePalette()
+				}
+			}
+
 			const fetchSamplePalette = () => {
 				for (let p of samplePalette) {
 					if (id.value === p.id) {
@@ -43,24 +49,32 @@
 				}
 			}
 
-			const fetchPalette = () => {
-				if (category.value === 'sample') {
-					fetchSamplePalette()
-				}
-			}
-
 			const createColorPalette = () => {
 				colorPalette.value = newPalette.value.colors[colorScale.value]
 			}
 
-			watch(colorScale, (v) => {
-				console.log(v)
+			watch(colorScale, () => {
 				createColorPalette()
 			})
+
+			const getColorShades = (colorId) => {
+				let shades = []
+				const colors = newPalette.value.colors
+				for (let level in colors) {
+					if (level === '50') continue
+					for (let color of colors[level]) {
+						if (color.id === colorId) {
+							shades.push(color)
+						}
+					}
+				}
+				return shades
+			}
 
 			fetchPalette()
 			provide('colorScale', colorScale)
 			provide('colorFormat', colorFormat)
+			provide('getColorShades', getColorShades)
 
 			return { id, category, colorPalette, newPalette }
 		}

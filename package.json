@@ -1,6 +1,6 @@
 {
 	"name": "color-picker",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"scripts": {
 		"dev": "vite --port 3001",
 		"build": "vite build",
@@ -17,6 +17,6 @@
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^1.9.3",
 		"unplugin-vue-components": "^0.15.6",
-		"vite": "^2.6.4"
+		"vite": "^2.6.13"
 	}
 }

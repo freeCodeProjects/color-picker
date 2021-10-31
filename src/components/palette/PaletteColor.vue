@@ -1,16 +1,28 @@
 <template>
 	<div class="palette">
-		<h1>hello</h1>
+		<PaletteColorCard
+			v-for="color in shades"
+			:color="color"
+			:showMoreBtn="false"
+			:key="color.id"
+		/>
 	</div>
 </template>
 
 <script>
 	import PaletteColorCard from './PaletteColorCard.vue'
+	import { inject } from 'vue'
+	import { useRoute } from 'vue-router'
 
 	export default {
 		components: { PaletteColorCard },
-		props: {},
-		setup(props) {}
+		setup() {
+			const route = useRoute()
+			const getShades = inject('getColorShades')
+			const shades = getShades(route.params.colorId)
+
+			return { shades }
+		}
 	}
 </script>
 
@@ -22,10 +34,6 @@
 		grid-template-rows: repeat(auto-fill, 1fr);
 
 		@media only screen and(max-width: 75em) {
-			grid-template-columns: repeat(4, 1fr);
-		}
-
-		@media only screen and(max-width: 62em) {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
