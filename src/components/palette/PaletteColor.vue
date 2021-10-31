@@ -1,29 +1,16 @@
 <template>
 	<div class="palette">
-		<PaletteColorCard
-			v-for="color in palette"
-			:color="color"
-			:id="id"
-			:key="color.id"
-		/>
+		<h1>hello</h1>
 	</div>
 </template>
 
 <script>
 	import PaletteColorCard from './PaletteColorCard.vue'
+
 	export default {
 		components: { PaletteColorCard },
-		props: {
-			palette: {
-				type: Object,
-				required: true
-			},
-			id: {
-				type: String,
-				required: true
-			}
-		},
-		setup() {}
+		props: {},
+		setup(props) {}
 	}
 </script>
 

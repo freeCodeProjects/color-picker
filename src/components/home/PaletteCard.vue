@@ -1,5 +1,11 @@
 <template>
-	<router-link :to="`/palette/${id}?category=${category}`">
+	<router-link
+		:to="{
+			name: 'PaletteDetail',
+			params: { id },
+			query: { category: 'sample' }
+		}"
+	>
 		<n-card hoverable size="small">
 			<div class="colors">
 				<span

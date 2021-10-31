@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './../views/Home.vue'
 import Palette from './../views/Palette.vue'
 import PaletteDetail from './../components/palette/PaletteDetail.vue'
+import PaletteColor from './../components/palette/PaletteColor.vue'
 
 const routes = [
 	{
@@ -21,6 +22,11 @@ const routes = [
 				path: '',
 				name: 'PaletteDetail',
 				component: PaletteDetail
+			},
+			{
+				path: ':colorName',
+				name: 'PaletteColor',
+				component: PaletteColor
 			}
 		]
 	}

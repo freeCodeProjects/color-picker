@@ -14,10 +14,10 @@
 </template>
 
 <script>
-	import { ref } from 'vue'
+	import { inject } from 'vue'
 	export default {
 		setup() {
-			const scaleValue = ref(500)
+			const scaleValue = inject('colorScale')
 			return { scaleValue }
 		}
 	}

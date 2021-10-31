@@ -5,11 +5,11 @@
 </template>
 
 <script>
-	import { ref } from 'vue'
+	import { inject } from 'vue'
 
 	export default {
 		setup() {
-			const colorFormat = ref('hex')
+			const colorFormat = inject('colorFormat')
 			const options = [
 				{
 					label: 'HEX',

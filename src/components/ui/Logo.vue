@@ -1,5 +1,5 @@
 <template>
-	<router-link to="/" class="logo">
+	<router-link :to="{ name: 'Home' }" class="logo">
 		<img class="logo__image" src="@/assets/logo.png" />
 		<n-gradient-text class="logo__title" type="success">
 			Color Picker

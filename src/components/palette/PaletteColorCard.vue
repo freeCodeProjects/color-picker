@@ -1,15 +1,28 @@
 <template>
 	<div>
-		<div class="palette__color" :style="`background-color: ${color.value}`">
-			<div class="color__name" :style="`color: ${color.value}`">
+		<div
+			class="palette__color"
+			:style="`background-color: ${color[colorFormat]}`"
+		>
+			<div class="color__name" :style="`color: ${color[colorFormat]}`">
 				<n-ellipsis style="max-width: 10rem">{{ color.name }}</n-ellipsis>
 			</div>
 			<div
 				class="color__action fade-animation-parent cursor-pointer"
-				@click="openCopyModal(color.value)"
+				@click="openCopyModal(color[colorFormat])"
 			>
 				<span class="color__action__copy__btn fade-animation"> copy </span>
-				<span v-if="showMoreBtn" class="color__action__more__btn"> more </span>
+				<router-link
+					v-if="showMoreBtn"
+					class="color__action__more__btn"
+					:to="{
+						name: 'PaletteColor',
+						params: { id, colorName: color.id },
+						query: { category: 'sample' }
+					}"
+				>
+					more
+				</router-link>
 			</div>
 		</div>
 		<CopyColorModal
@@ -22,12 +35,16 @@
 
 <script>
 	import CopyColorModal from './CopyColorModal.vue'
-	import { ref } from 'vue'
+	import { ref, inject, watch } from 'vue'
 	export default {
 		components: { CopyColorModal },
 		props: {
 			color: {
 				type: Object,
+				required: true
+			},
+			id: {
+				type: String,
 				required: true
 			},
 			showMoreBtn: {
@@ -38,6 +55,11 @@
 		setup() {
 			const showCopyModal = ref(false)
 			const colorValue = ref('')
+			const colorFormat = inject('colorFormat')
+
+			watch(colorFormat, (v) => {
+				console.log('format', v)
+			})
 
 			const openCopyModal = (c) => {
 				colorValue.value = c
@@ -49,7 +71,8 @@
 			return {
 				colorValue,
 				showCopyModal,
-				openCopyModal
+				openCopyModal,
+				colorFormat
 			}
 		}
 	}
@@ -80,7 +103,8 @@
 		width: 100%;
 		height: 100%;
 
-		span {
+		&__copy__btn,
+		&__more__btn {
 			background: rgba($color: #000000, $alpha: 0.2);
 			display: flex;
 			align-items: center;
