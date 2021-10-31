@@ -6,6 +6,9 @@
 			:showMoreBtn="false"
 			:key="color.id"
 		/>
+		<n-config-provider :theme="theme" class="go-back" @click="$router.go(-1)">
+			<n-button>Go Back</n-button>
+		</n-config-provider>
 	</div>
 </template>
 
@@ -19,9 +22,10 @@
 		setup() {
 			const route = useRoute()
 			const getShades = inject('getColorShades')
+			const theme = inject('theme')
 			const shades = getShades(route.params.colorId)
 
-			return { shades }
+			return { shades, theme }
 		}
 	}
 </script>
@@ -40,5 +44,11 @@
 		@media only screen and(max-width: 36em) {
 			grid-template-columns: repeat(1, 1fr);
 		}
+	}
+
+	.go-back {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

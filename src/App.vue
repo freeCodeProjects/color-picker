@@ -38,6 +38,7 @@
 			}
 
 			provide('toggleTheme', toggleTheme)
+			provide('theme', theme)
 			return {
 				theme
 			}
