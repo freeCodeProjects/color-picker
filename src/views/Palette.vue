@@ -29,8 +29,10 @@
 		},
 		setup(props) {
 			const { id, category } = toRefs(props)
-			const colorScale = ref(500)
-			const colorFormat = ref('hex')
+			const colorScale = ref(
+				parseInt(localStorage.getItem('colorScale') || 500)
+			)
+			const colorFormat = ref(localStorage.getItem('colorFormat') || 'hex')
 			const colorPalette = ref({})
 			const newPalette = ref({})
 
@@ -55,6 +57,11 @@
 
 			watch(colorScale, () => {
 				createColorPalette()
+				localStorage.setItem('colorScale', colorScale.value)
+			})
+
+			watch(colorFormat, () => {
+				localStorage.setItem('colorFormat', colorFormat.value)
 			})
 
 			const getColorShades = (colorId) => {
