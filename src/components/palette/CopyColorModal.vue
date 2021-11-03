@@ -57,6 +57,7 @@ import { toRefs } from 'vue';
 			justify-content: center;
 			align-items: center;
 			color: white;
+			mix-blend-mode: difference;
 		}
 	}
 
@@ -68,7 +69,6 @@ import { toRefs } from 'vue';
 	}
 
 	.color-value {
-		background-blend-mode: difference;
 		font-size: max(1.5rem, 2vw);
 	}
 </style>

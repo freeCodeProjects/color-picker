@@ -5,7 +5,7 @@
 			:style="`background-color: ${color[colorFormat]}`"
 		>
 			<div class="color__name" :style="`color: ${color[colorFormat]}`">
-				<n-ellipsis style="max-width: 10rem">{{ color.name }}</n-ellipsis>
+				<n-ellipsis style="max-width: 15rem">{{ color.name }}</n-ellipsis>
 			</div>
 			<div
 				class="color__action fade-animation-parent cursor-pointer"
@@ -17,7 +17,7 @@
 					class="color__action__more__btn"
 					:to="{
 						name: 'PaletteColor',
-						params: { id, colorId: color.id, colorValue: color.hex },
+						params: { id, colorId: color.id },
 						query: { category: 'sample' }
 					}"
 				>
