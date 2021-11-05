@@ -3,25 +3,30 @@
 		<n-button type="info" round>Login</n-button>
 	</div>
 	<div v-else>
-		<n-popover trigger="hover" placement="bottom-end">
-			<template #trigger>
-				<div class="user-info">
-					<n-avatar
-						size="large"
-						src="https://avatars.githubusercontent.com/u/21134455?v=4"
-						round
-					/>
-					<n-icon size="16">
-						<CaretDown />
-					</n-icon>
+		<n-space align="center">
+			<router-link :to="{ name: 'CreatePalette' }">
+				<n-button type="primary">Create Palette</n-button>
+			</router-link>
+			<n-popover trigger="hover" placement="bottom-end">
+				<template #trigger>
+					<div class="user-info">
+						<n-avatar
+							size="large"
+							src="https://avatars.githubusercontent.com/u/21134455?v=4"
+							round
+						/>
+						<n-icon size="16">
+							<CaretDown />
+						</n-icon>
+					</div>
+				</template>
+				<div class="user-info__popover">
+					<h3>Welcome</h3>
+					<n-ellipsis style="width: 10rem"> Akash Kumar Seth </n-ellipsis>
+					<n-button type="error" block round>Logout</n-button>
 				</div>
-			</template>
-			<div class="user-info__popover">
-				<h3>Welcome</h3>
-				<n-ellipsis style="width: 10rem"> Akash Kumar Seth </n-ellipsis>
-				<n-button type="error" block round>Logout</n-button>
-			</div>
-		</n-popover>
+			</n-popover>
+		</n-space>
 	</div>
 </template>
 

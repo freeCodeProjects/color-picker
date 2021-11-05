@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import palettes from './../../utils/seedColors'
+	import { seedColors as palettes } from './../../utils/seedColors'
 	import PaletteCard from './PaletteCard.vue'
 	export default {
 		components: { PaletteCard },

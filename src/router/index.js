@@ -3,6 +3,7 @@ import Home from './../views/Home.vue'
 import Palette from './../views/Palette.vue'
 import PaletteDetail from './../components/palette/PaletteDetail.vue'
 import PaletteColor from './../components/palette/PaletteColor.vue'
+import CreatePalette from './../views/CreatePalette.vue'
 
 const routes = [
 	{
@@ -29,6 +30,11 @@ const routes = [
 				component: PaletteColor
 			}
 		]
+	},
+	{
+		path: '/create',
+		name: 'CreatePalette',
+		component: CreatePalette
 	}
 ]
 

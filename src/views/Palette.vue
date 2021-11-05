@@ -12,7 +12,7 @@
 	import PaletteFooter from '../components/palette/PaletteFooter.vue'
 	import PaletteHeader from '../components/palette/PaletteHeader.vue'
 	import { toRefs, ref, provide, watch } from 'vue'
-	import samplePalette from '../utils/seedColors'
+	import { seedColors as samplePalette } from '../utils/seedColors'
 	import { generatePalette } from '../utils/colorHelper'
 
 	export default {

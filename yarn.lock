@@ -944,6 +944,11 @@ vooks@^0.2.4, vooks@^0.2.6:
   dependencies:
     evtd "^0.2.2"
 
+vue-color-kit@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vue-color-kit/-/vue-color-kit-1.0.5.tgz#4524be982078d4916756e480d2c9324717169738"
+  integrity sha512-PUQzqdpI7672YYuoHdTLENHldieVMis0u9g2n7NAxiLGdiaqCD/QaYtbDOvtASpN5oSIfKxQgPV+i45MOlkKnw==
+
 vue-router@^4.0.12:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.12.tgz#8dc792cddf5bb1abcc3908f9064136de7e13c460"

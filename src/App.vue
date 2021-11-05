@@ -1,8 +1,10 @@
 <template>
 	<n-config-provider :theme="theme">
-		<n-global-style />
-		<router-view></router-view>
-		<ThemeButton :activeTheme="theme" />
+		<n-message-provider>
+			<n-global-style />
+			<router-view></router-view>
+			<ThemeButton :activeTheme="theme" />
+		</n-message-provider>
 	</n-config-provider>
 </template>
 

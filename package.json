@@ -12,6 +12,7 @@
 		"naive-ui": "^2.19.7",
 		"sass": "^1.43.2",
 		"vue": "^3.2.16",
+		"vue-color-kit": "^1.0.5",
 		"vue-router": "^4.0.12"
 	},
 	"devDependencies": {
