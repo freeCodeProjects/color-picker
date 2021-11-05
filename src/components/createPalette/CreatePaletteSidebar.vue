@@ -52,12 +52,7 @@
 					placeholder="Color Name"
 				/>
 			</n-form-item>
-			<n-button
-				@click="handleValidateClick"
-				class="add-color-btn"
-				:color="color"
-				:disabled="false"
-			>
+			<n-button @click="handleValidateClick" type="primary" :disabled="false">
 				Add Color
 			</n-button>
 		</n-form>
@@ -141,10 +136,5 @@
 			align-self: center;
 			margin-bottom: 1rem;
 		}
-	}
-
-	.add-color-btn {
-		width: 100%;
-		border: 1px solid rgba(0, 0, 0, 0.2);
 	}
 </style>
