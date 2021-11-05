@@ -23,7 +23,27 @@
 				class="form__color__picker"
 				:theme="theme ? 'dark' : 'light'"
 				:color="color"
+				:width="260"
+				:show-alpha="false"
+				:disable-input-field="true"
 				@changeColor="updateColor"
+				:colors-default="[
+					'#000000',
+					'#FFFFFF',
+					'#FF1900',
+					'#F47365',
+					'#FFB243',
+					'#FFE623',
+					'#6EFF2A',
+					'#1BC7B1',
+					'#00BEFF',
+					'#2E81FF',
+					'#5D61FF',
+					'#FF89CF',
+					'#FC3CAD',
+					'#BF3DCE',
+					'#8E00A7'
+				]"
 			/>
 			<n-form-item path="name">
 				<n-input
@@ -34,7 +54,7 @@
 			</n-form-item>
 			<n-button
 				@click="handleValidateClick"
-				style="width: 100%"
+				class="add-color-btn"
 				:color="color"
 				:disabled="false"
 			>
@@ -121,5 +141,10 @@
 			align-self: center;
 			margin-bottom: 1rem;
 		}
+	}
+
+	.add-color-btn {
+		width: 100%;
+		border: 1px solid rgba(0, 0, 0, 0.2);
 	}
 </style>
