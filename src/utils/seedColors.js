@@ -245,11 +245,38 @@ export const seedColors = [
 ]
 
 export const generateInitialPalette = () => {
-	const count = 15
-	let newPalette = []
+	const count = 19
+	let newColors = []
+
+	//create array of all existing colors
 	let colors = []
 	for (let c of seedColors) {
 		colors = [...colors, ...c.colors]
 	}
-	console.log(colors)
+
+	//generate random unique index
+	let uniqueIndexSet = new Set()
+	while (uniqueIndexSet.size < count) {
+		const randomIdx = Math.floor(Math.random() * colors.length)
+		if (!uniqueIndexSet.has(randomIdx)) {
+			uniqueIndexSet.add(randomIdx)
+		}
+	}
+
+	//add random color to newColors
+	for (let idx of uniqueIndexSet) {
+		newColors.push(colors[idx])
+	}
+	return newColors
+}
+
+export const getRandomColor = () => {
+	//create array of all existing colors
+	let colors = []
+	for (let c of seedColors) {
+		colors = [...colors, ...c.colors]
+	}
+	const randomIdx = Math.floor(Math.random() * colors.length)
+
+	return colors[randomIdx]
 }

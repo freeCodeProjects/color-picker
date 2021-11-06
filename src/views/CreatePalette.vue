@@ -2,18 +2,25 @@
 	<div class="layout">
 		<CreatePaletteHeader />
 		<n-layout class="layout2" has-sider>
-			<CreatePaletteSidebar @addColor="addColor" />
-			<CreatePaletteContent />
+			<CreatePaletteSidebar
+				@addColor="addColor"
+				:disableForm="disableForm"
+				:colors="colors"
+				@clearPalette="clearPalette"
+				@addRandomColor="addRandomColor"
+			/>
+			<CreatePaletteContent :colors="colors" @deleteColor="deleteColor" />
 		</n-layout>
 	</div>
 </template>
 
 <script>
-	import { ref } from 'vue'
+	import { ref, watch } from 'vue'
 	import CreatePaletteHeader from '../components/createPalette/CreatePaletteHeader.vue'
 	import CreatePaletteSidebar from '../components/createPalette/CreatePaletteSidebar.vue'
 	import CreatePaletteContent from '../components/createPalette/CreatePaletteContent.vue'
-	import { generateInitialPalette } from '../utils/seedColors'
+	import { generateInitialPalette, getRandomColor } from '../utils/seedColors'
+	import { useRoute } from 'vue-router'
 	export default {
 		components: {
 			CreatePaletteHeader,
@@ -21,14 +28,56 @@
 			CreatePaletteContent
 		},
 		setup() {
-			const addColor = (color, name) => {
-				console.log(color, name)
+			const colors = ref([])
+			const route = useRoute()
+			const disableForm = ref(false)
+
+			if (route.name === 'CreatePalette') {
+				colors.value = generateInitialPalette()
 			}
 
-			generateInitialPalette()
+			watch(
+				() => [...colors.value],
+				(newValue) => {
+					if (colors.value.length === 20) {
+						disableForm.value = true
+					} else {
+						disableForm.value = false
+					}
+				}
+			)
+
+			const addColor = (color, name) => {
+				colors.value.push({ name, value: color })
+			}
+
+			const deleteColor = (index) => {
+				colors.value = colors.value.filter((color, idx) => idx != index)
+			}
+
+			const clearPalette = () => {
+				console.log('hello')
+				colors.value = []
+			}
+
+			const addRandomColor = () => {
+				let foundNewColor = false
+				while (!foundNewColor) {
+					let newColor = getRandomColor()
+					if (!colors.value.includes(newColor)) {
+						foundNewColor = true
+						colors.value.push(newColor)
+					}
+				}
+			}
 
 			return {
-				addColor
+				addColor,
+				colors,
+				disableForm,
+				deleteColor,
+				clearPalette,
+				addRandomColor
 			}
 		}
 	}

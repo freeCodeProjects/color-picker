@@ -8,8 +8,16 @@
 	>
 		<n-h1 style="text-align: center">Design Your Palette</n-h1>
 		<div class="action-btns">
-			<n-button type="error">Delete Palette</n-button>
-			<n-button type="info">Random Color</n-button>
+			<n-button type="error" @click="$emit('clearPalette')">
+				Clear Palette
+			</n-button>
+			<n-button
+				type="info"
+				:disabled="disableForm"
+				@click="$emit('addRandomColor')"
+			>
+				Random Color
+			</n-button>
 		</div>
 		<n-form
 			:model="formValue"
@@ -23,7 +31,7 @@
 				class="form__color__picker"
 				:theme="theme ? 'dark' : 'light'"
 				:color="color"
-				:width="260"
+				:width="268"
 				:show-alpha="false"
 				:disable-input-field="true"
 				@changeColor="updateColor"
@@ -52,7 +60,11 @@
 					placeholder="Color Name"
 				/>
 			</n-form-item>
-			<n-button @click="handleValidateClick" type="primary" :disabled="false">
+			<n-button
+				@click="handleValidateClick"
+				type="primary"
+				:disabled="disableForm"
+			>
 				Add Color
 			</n-button>
 		</n-form>
@@ -62,11 +74,20 @@
 <script>
 	import { ColorPicker } from 'vue-color-kit'
 	import 'vue-color-kit/dist/vue-color-kit.css'
-	import { ref, inject } from 'vue'
+	import { ref, inject, toRefs } from 'vue'
 	import { useMessage } from 'naive-ui'
 	export default {
 		components: {
 			ColorPicker
+		},
+		emits: ['addColor', 'clearPalette', 'addRandomColor'],
+		props: {
+			disableForm: {
+				type: Boolean
+			},
+			colors: {
+				type: Array
+			}
 		},
 		setup(props, { emit }) {
 			const defaultColor =
@@ -74,6 +95,7 @@
 			const color = ref(defaultColor)
 			const message = useMessage()
 			const theme = inject('theme')
+			const { colors } = toRefs(props)
 
 			const formRef = ref(null)
 			const formValue = ref({ name: '' })
@@ -84,15 +106,14 @@
 					required: true,
 					trigger: 'blur',
 					validator: (rule, value) => {
-						if (value.trim().length <= 3) {
-							return new Error('Name must be of 3 characters.')
+						if (value.trim().length < 3) {
+							return new Error('Name must be atleast 3 characters.')
 						}
 					}
 				}
 			}
 
 			const updateColor = (c) => {
-				console.log(c)
 				color.value = c.hex
 			}
 
@@ -100,12 +121,26 @@
 				e.preventDefault()
 				formRef.value.validate((errors) => {
 					if (!errors) {
-						message.success('Valid')
-						emit('addColor', color.value, formValue.value.name)
-					} else {
-						message.error('Invalid')
+						submitForm()
 					}
 				})
+			}
+
+			const submitForm = () => {
+				for (let existingColor of colors.value) {
+					if (color.value === existingColor.value) {
+						message.error('Color already exist in palette.')
+						return
+					}
+					if (
+						formValue.value.name.trim().toLowerCase() === existingColor.name
+					) {
+						message.error('Color with same name exist in palette.')
+						return
+					}
+				}
+				emit('addColor', color.value, formValue.value.name.trim())
+				formValue.value = { name: '' }
 			}
 
 			return {
