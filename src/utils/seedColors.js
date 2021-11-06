@@ -243,3 +243,13 @@ export const seedColors = [
 		]
 	}
 ]
+
+export const generateInitialPalette = () => {
+	const count = 15
+	let newPalette = []
+	let colors = []
+	for (let c of seedColors) {
+		colors = [...colors, ...c.colors]
+	}
+	console.log(colors)
+}

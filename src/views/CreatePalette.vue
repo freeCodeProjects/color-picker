@@ -13,6 +13,7 @@
 	import CreatePaletteHeader from '../components/createPalette/CreatePaletteHeader.vue'
 	import CreatePaletteSidebar from '../components/createPalette/CreatePaletteSidebar.vue'
 	import CreatePaletteContent from '../components/createPalette/CreatePaletteContent.vue'
+	import { generateInitialPalette } from '../utils/seedColors'
 	export default {
 		components: {
 			CreatePaletteHeader,
@@ -23,6 +24,8 @@
 			const addColor = (color, name) => {
 				console.log(color, name)
 			}
+
+			generateInitialPalette()
 
 			return {
 				addColor

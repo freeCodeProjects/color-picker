@@ -946,7 +946,7 @@ vooks@^0.2.4, vooks@^0.2.6:
 
 "vue-color-kit@https://github.com/Akash187/vue-color-kit":
   version "1.0.5"
-  resolved "https://github.com/Akash187/vue-color-kit#baa8ff1c7e433dd7692d7ffd959219416a5e2309"
+  resolved "https://github.com/Akash187/vue-color-kit#206e5a3adf2038613cb158f5096e4e3be99f96f7"
 
 vue-router@^4.0.12:
   version "4.0.12"
