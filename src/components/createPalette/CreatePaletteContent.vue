@@ -1,44 +1,70 @@
 <template>
 	<n-layout-content content-style="overflow:auto">
 		<div class="colors">
-			<div
-				v-for="(color, index) in colors"
-				:key="index"
-				class="color"
-				:style="`background: ${color.value}`"
+			<draggable
+				v-model="colorsArray"
+				group="people"
+				@end="arrangeColor"
+				:animation="200"
+				ghost-class="ghost"
+				tag="transition-group"
+				item-key="order"
 			>
-				<div class="color__content">
-					<n-ellipsis style="max-width: 80%">
-						<span class="color__content__name">{{ color.name }}</span>
-					</n-ellipsis>
-					<n-button
-						circle
-						@click="$emit('deleteColor', index)"
-						class="delete-btn"
-					>
-						<template #icon>
-							<n-icon class="delete-icon"><DeleteIcon /></n-icon>
-						</template>
-					</n-button>
-				</div>
-			</div>
+				<template #item="{ element: color }">
+					<div class="color" :style="`background: ${color.value}`">
+						<div class="color__content">
+							<n-ellipsis style="max-width: 80%">
+								<span class="color__content__name">{{ color.name }}</span>
+							</n-ellipsis>
+							<n-button
+								circle
+								@click="$emit('deleteColor', color.order)"
+								class="delete-btn"
+							>
+								<template #icon>
+									<n-icon class="delete-icon"><DeleteIcon /></n-icon>
+								</template>
+							</n-button>
+						</div>
+					</div>
+				</template>
+			</draggable>
 		</div>
 	</n-layout-content>
 </template>
 
 <script>
 	import { TrashOutline as DeleteIcon } from '@vicons/ionicons5'
+	import draggable from 'vuedraggable'
+	import { computed, ref } from 'vue'
+
 	export default {
 		components: {
-			DeleteIcon
+			DeleteIcon,
+			draggable
 		},
 		props: {
 			colors: {
 				type: Array
 			}
 		},
-		emits: ['deleteColor'],
-		setup() {}
+		emits: ['deleteColor', 'reArrangeColor'],
+		setup(props, { emit }) {
+			const colorsArray = computed(() =>
+				props.colors.map((color, idx) => ({ ...color, order: idx }))
+			)
+			const drag = ref(false)
+
+			const arrangeColor = (list) => {
+				emit('reArrangeColor', list.oldIndex, list.newIndex)
+			}
+
+			return {
+				colorsArray,
+				drag,
+				arrangeColor
+			}
+		}
 	}
 </script>
 
@@ -65,6 +91,7 @@
 	.color {
 		min-height: 3rem;
 		padding: 0.5rem;
+		cursor: move;
 	}
 
 	.color__content {
@@ -86,5 +113,9 @@
 	.delete-btn:hover .delete-icon,
 	.delete-btn:focus .delete-icon {
 		color: #36ad6a;
+	}
+
+	.ghost {
+		opacity: 0.2;
 	}
 </style>

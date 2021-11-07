@@ -9,7 +9,11 @@
 				@clearPalette="clearPalette"
 				@addRandomColor="addRandomColor"
 			/>
-			<CreatePaletteContent :colors="colors" @deleteColor="deleteColor" />
+			<CreatePaletteContent
+				:colors="colors"
+				@deleteColor="deleteColor"
+				@reArrangeColor="reArrangeColor"
+			/>
 		</n-layout>
 	</div>
 </template>
@@ -71,13 +75,30 @@
 				}
 			}
 
+			const reArrangeColor = (oldIdx, newIdx) => {
+				if (oldIdx < newIdx) {
+					const firstHalf = colors.value.slice(0, oldIdx)
+					const secondHalf = colors.value.slice(oldIdx + 1, newIdx + 1)
+					const thirdHalf = colors.value.slice(newIdx + 1)
+					const color = colors.value[oldIdx]
+					colors.value = [...firstHalf, ...secondHalf, color, ...thirdHalf]
+				} else {
+					const firstHalf = colors.value.slice(0, newIdx)
+					const secondHalf = colors.value.slice(newIdx, oldIdx)
+					const thirdHalf = colors.value.slice(oldIdx + 1)
+					const color = colors.value[oldIdx]
+					colors.value = [...firstHalf, color, ...secondHalf, ...thirdHalf]
+				}
+			}
+
 			return {
 				addColor,
 				colors,
 				disableForm,
 				deleteColor,
 				clearPalette,
-				addRandomColor
+				addRandomColor,
+				reArrangeColor
 			}
 		}
 	}

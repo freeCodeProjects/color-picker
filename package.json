@@ -13,7 +13,8 @@
 		"sass": "^1.43.2",
 		"vue": "^3.2.16",
 		"vue-color-kit": "https://github.com/Akash187/vue-color-kit",
-		"vue-router": "^4.0.12"
+		"vue-router": "^4.0.12",
+		"vuedraggable": "^4.1.0"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^1.9.3",
