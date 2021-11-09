@@ -1,6 +1,9 @@
 <template>
 	<div class="layout">
-		<CreatePaletteHeader />
+		<CreatePaletteHeader
+			@savePalette="savePalette"
+			:disableSaveButton="disableSaveButton"
+		/>
 		<n-layout class="layout2" has-sider>
 			<CreatePaletteSidebar
 				@addColor="addColor"
@@ -15,26 +18,35 @@
 				@reArrangeColor="reArrangeColor"
 			/>
 		</n-layout>
+		<SavePaletteModal
+			:showSaveModal="showSaveModal"
+			@closeModal="showSaveModal = !showSaveModal"
+		/>
 	</div>
 </template>
 
 <script>
-	import { ref, watch } from 'vue'
+	import { ref, watch, computed } from 'vue'
 	import CreatePaletteHeader from '../components/createPalette/CreatePaletteHeader.vue'
 	import CreatePaletteSidebar from '../components/createPalette/CreatePaletteSidebar.vue'
 	import CreatePaletteContent from '../components/createPalette/CreatePaletteContent.vue'
 	import { generateInitialPalette, getRandomColor } from '../utils/seedColors'
 	import { useRoute } from 'vue-router'
+	import SavePaletteModal from '../components/createPalette/SavePaletteModal.vue'
 	export default {
 		components: {
 			CreatePaletteHeader,
 			CreatePaletteSidebar,
-			CreatePaletteContent
+			CreatePaletteContent,
+			SavePaletteModal
 		},
 		setup() {
 			const colors = ref([])
 			const route = useRoute()
 			const disableForm = ref(false)
+			const showSaveModal = ref(false)
+
+			const disableSaveButton = computed(() => colors.value == 0)
 
 			if (route.name === 'CreatePalette') {
 				colors.value = generateInitialPalette()
@@ -60,7 +72,6 @@
 			}
 
 			const clearPalette = () => {
-				console.log('hello')
 				colors.value = []
 			}
 
@@ -91,6 +102,10 @@
 				}
 			}
 
+			const savePalette = () => {
+				showSaveModal.value = !showSaveModal.value
+			}
+
 			return {
 				addColor,
 				colors,
@@ -98,7 +113,10 @@
 				deleteColor,
 				clearPalette,
 				addRandomColor,
-				reArrangeColor
+				reArrangeColor,
+				showSaveModal,
+				disableSaveButton,
+				savePalette
 			}
 		}
 	}

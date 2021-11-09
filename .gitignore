@@ -3,5 +3,6 @@ node_modules
 dist
 dist-ssr
 .vscode
+.idea
 *.local
 yarn-error.log
