@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from './../views/Home.vue'
-import Palette from './../views/Palette.vue'
-import PaletteDetail from './../components/palette/PaletteDetail.vue'
-import PaletteColor from './../components/palette/PaletteColor.vue'
-import CreatePalette from './../views/CreatePalette.vue'
+const Home = () => import('./../views/Home.vue')
+const Palette = () => import('./../views/Palette.vue')
+const PaletteDetail = () => import('./../components/palette/PaletteDetail.vue')
+const PaletteColor = () => import('./../components/palette/PaletteColor.vue')
+const CreatePalette = () => import('./../views/CreatePalette.vue')
 
 const routes = [
 	{
