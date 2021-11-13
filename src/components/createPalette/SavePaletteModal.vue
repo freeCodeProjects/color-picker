@@ -79,7 +79,7 @@
 					trigger: 'blur',
 					validator: (rule, value) => {
 						if (value.trim().length < 3) {
-							return new Error('Name must be atleast 3 characters.')
+							return new Error('Name must be atleast 3 characters long.')
 						}
 					}
 				},
