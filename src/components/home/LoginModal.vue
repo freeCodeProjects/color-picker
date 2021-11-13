@@ -16,7 +16,7 @@
 					</template>
 					Google
 				</n-button>
-				<n-button color="#000" size="large" :block="true">
+				<n-button type="default" size="large" :block="true">
 					<template #icon>
 						<n-icon>
 							<github-icon />
