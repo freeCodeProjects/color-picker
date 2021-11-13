@@ -1,6 +1,7 @@
 <template>
-	<div v-if="login">
-		<n-button type="info" round>Login</n-button>
+	<div v-if="!login">
+		<n-button type="info" round @click="openModal">Login</n-button>
+		<LoginModal :showModal="toggleModal" @closeModal="closeModal" />
 	</div>
 	<div v-else>
 		<n-space align="center">
@@ -33,11 +34,21 @@
 <script>
 	import { CaretDown } from '@vicons/ionicons5'
 	import { ref } from 'vue'
+	import LoginModal from './LoginModal.vue'
 	export default {
-		components: { CaretDown },
+		components: { CaretDown, LoginModal },
 		setup() {
 			const login = ref(false)
-			return { login }
+			const toggleModal = ref(false)
+
+			const openModal = () => {
+				toggleModal.value = true
+			}
+
+			const closeModal = () => {
+				toggleModal.value = false
+			}
+			return { login, toggleModal, openModal, closeModal }
 		}
 	}
 </script>
