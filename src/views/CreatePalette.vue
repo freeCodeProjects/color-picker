@@ -26,19 +26,23 @@
 </template>
 
 <script>
-	import { ref, watch, computed } from 'vue'
+	import { ref, watch, computed, defineAsyncComponent } from 'vue'
+	import { NLayout } from 'naive-ui'
 	import CreatePaletteHeader from '../components/createPalette/CreatePaletteHeader.vue'
 	import CreatePaletteSidebar from '../components/createPalette/CreatePaletteSidebar.vue'
 	import CreatePaletteContent from '../components/createPalette/CreatePaletteContent.vue'
 	import { generateInitialPalette, getRandomColor } from '../utils/seedColors'
 	import { useRoute } from 'vue-router'
-	import SavePaletteModal from '../components/createPalette/SavePaletteModal.vue'
+	const SavePaletteModal = defineAsyncComponent(() =>
+		import('../components/createPalette/SavePaletteModal.vue')
+	)
 	export default {
 		components: {
 			CreatePaletteHeader,
 			CreatePaletteSidebar,
 			CreatePaletteContent,
-			SavePaletteModal
+			SavePaletteModal,
+			NLayout
 		},
 		setup() {
 			const colors = ref([])

@@ -14,7 +14,13 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		Components({
-			resolvers: [NaiveUiResolver()]
+			resolvers: [NaiveUiResolver()],
+			exclude: [
+				/\CreatePalette.vue/,
+				/[\\/]node_modules[\\/]/,
+				/[\\/]\.git[\\/]/,
+				/[\\/]\.nuxt[\\/]/
+			]
 		})
 	]
 })
