@@ -9,38 +9,17 @@
 </template>
 
 <script>
-	import { ref, provide } from 'vue'
-	import { darkTheme } from 'naive-ui'
+	import { provide } from 'vue'
 	import ThemeButton from './components/ui/ThemeButton.vue'
-
-	const getInitialTheme = () => {
-		if (
-			localStorage.getItem('theme') &&
-			localStorage.getItem('theme') === 'light'
-		) {
-			return null
-		} else {
-			return darkTheme
-		}
-	}
+	import store from './store/theme'
 
 	export default {
 		components: { ThemeButton },
 		setup() {
-			const theme = ref(getInitialTheme())
-
-			const toggleTheme = () => {
-				if (theme.value) {
-					theme.value = null
-					localStorage.setItem('theme', 'light')
-				} else {
-					theme.value = darkTheme
-					localStorage.setItem('theme', 'dark')
-				}
-			}
-
-			provide('toggleTheme', toggleTheme)
+			//initialize store
+			const { theme, toggleTheme } = store()
 			provide('theme', theme)
+			provide('toggleTheme', toggleTheme)
 			return {
 				theme
 			}
