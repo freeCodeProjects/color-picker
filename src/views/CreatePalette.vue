@@ -91,19 +91,11 @@
 			}
 
 			const reArrangeColor = (oldIdx, newIdx) => {
-				if (oldIdx < newIdx) {
-					const firstHalf = colors.value.slice(0, oldIdx)
-					const secondHalf = colors.value.slice(oldIdx + 1, newIdx + 1)
-					const thirdHalf = colors.value.slice(newIdx + 1)
-					const color = colors.value[oldIdx]
-					colors.value = [...firstHalf, ...secondHalf, color, ...thirdHalf]
-				} else {
-					const firstHalf = colors.value.slice(0, newIdx)
-					const secondHalf = colors.value.slice(newIdx, oldIdx)
-					const thirdHalf = colors.value.slice(oldIdx + 1)
-					const color = colors.value[oldIdx]
-					colors.value = [...firstHalf, color, ...secondHalf, ...thirdHalf]
-				}
+				const tempColors = colors.value
+				const temp = tempColors[oldIdx]
+				tempColors.splice(oldIdx, 1)
+				tempColors.splice(newIdx, 0, temp)
+				colors.value = tempColors
 			}
 
 			const savePalette = () => {
