@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!login">
+	<div v-if="!isAuthenticated">
 		<n-button type="info" round @click="openModal">Login</n-button>
 		<LoginModal :showModal="toggleModal" @closeModal="closeModal" />
 	</div>
@@ -24,7 +24,7 @@
 				<div class="user-info__popover">
 					<h3>Welcome</h3>
 					<n-ellipsis style="width: 10rem"> Akash Kumar Seth </n-ellipsis>
-					<n-button type="error" block round>Logout</n-button>
+					<n-button type="error" block round @click="signOut">Logout</n-button>
 				</div>
 			</n-popover>
 		</n-space>
@@ -33,12 +33,16 @@
 
 <script>
 	import { CaretDown } from '@vicons/ionicons5'
-	import { ref } from 'vue'
+	import { ref, inject } from 'vue'
 	import LoginModal from './LoginModal.vue'
+	import { logout } from '../../../firebase/auth'
+	import { useMessage } from 'naive-ui'
+
 	export default {
 		components: { CaretDown, LoginModal },
 		setup() {
-			const login = ref(false)
+			const isAuthenticated = inject('isAuthenticated')
+			const message = useMessage()
 			const toggleModal = ref(false)
 
 			const openModal = () => {
@@ -48,7 +52,16 @@
 			const closeModal = () => {
 				toggleModal.value = false
 			}
-			return { login, toggleModal, openModal, closeModal }
+
+			const signOut = async () => {
+				try {
+					await logout()
+				} catch (error) {
+					message.error(error)
+				}
+			}
+
+			return { isAuthenticated, toggleModal, openModal, closeModal, signOut }
 		}
 	}
 </script>

@@ -1,5 +1,7 @@
-import { ref, provide } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { darkTheme } from 'naive-ui'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../../firebase'
 
 const getInitialTheme = () => {
 	if (
@@ -14,6 +16,8 @@ const getInitialTheme = () => {
 
 const store = () => {
 	const theme = ref(getInitialTheme())
+	const userData = ref(JSON.parse(localStorage.getItem('userData')) || null)
+	const isAuthenticated = ref(localStorage.getItem('isAuthenticated') || false)
 
 	const toggleTheme = () => {
 		if (theme.value) {
@@ -24,11 +28,29 @@ const store = () => {
 			localStorage.setItem('theme', 'dark')
 		}
 	}
-	provide('toggleTheme', toggleTheme)
-	provide('theme', theme)
+
+	const unsubscribe = onAuthStateChanged(auth, (user) => {
+		if (user) {
+			isAuthenticated.value = true
+			userData.value = user
+			localStorage.setItem('isAuthenticated', true)
+			localStorage.setItem('userData', JSON.stringify(user))
+		} else {
+			isAuthenticated.value = false
+			userData.value = null
+			localStorage.setItem('isAuthenticated', false)
+			localStorage.removeItem('userData')
+		}
+	})
+
+	onUnmounted(() => {
+		unsubscribe()
+	})
 
 	return {
 		theme,
+		userData,
+		isAuthenticated,
 		toggleTheme
 	}
 }

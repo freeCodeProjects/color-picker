@@ -17,9 +17,12 @@
 		components: { ThemeButton },
 		setup() {
 			//initialize store
-			const { theme, toggleTheme } = store()
+			const { theme, isAuthenticated, userData, toggleTheme } = store()
 			provide('theme', theme)
 			provide('toggleTheme', toggleTheme)
+			provide('isAuthenticated', isAuthenticated)
+			provide('userData', userData)
+
 			return {
 				theme
 			}
