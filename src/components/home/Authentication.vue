@@ -13,7 +13,8 @@
 					<div class="user-info">
 						<n-avatar
 							size="large"
-							src="https://avatars.githubusercontent.com/u/21134455?v=4"
+							:src="user.photoURL"
+							:fallback-src="userLogo"
 							round
 						/>
 						<n-icon size="16">
@@ -23,7 +24,7 @@
 				</template>
 				<div class="user-info__popover">
 					<h3>Welcome</h3>
-					<n-ellipsis style="width: 10rem"> Akash Kumar Seth </n-ellipsis>
+					<n-ellipsis style="width: 10rem"> {{ user.name }} </n-ellipsis>
 					<n-button type="error" block round @click="signOut">Logout</n-button>
 				</div>
 			</n-popover>
@@ -33,15 +34,20 @@
 
 <script>
 	import { CaretDown } from '@vicons/ionicons5'
-	import { ref, inject } from 'vue'
+	import { ref, reactive, inject, watch } from 'vue'
 	import LoginModal from './LoginModal.vue'
 	import { logout } from '../../../firebase/auth'
 	import { useMessage } from 'naive-ui'
+	import { User } from '../../../firebase/models'
+	import userLogo from '@/assets/user.svg'
 
 	export default {
 		components: { CaretDown, LoginModal },
 		setup() {
 			const isAuthenticated = inject('isAuthenticated')
+			const userData = inject('userData')
+			const user = reactive(new User())
+
 			const message = useMessage()
 			const toggleModal = ref(false)
 
@@ -61,7 +67,23 @@
 				}
 			}
 
-			return { isAuthenticated, toggleModal, openModal, closeModal, signOut }
+			watch(userData, () => {
+				if (userData.value) {
+					const data = userData.value
+					user.id = data.uid
+					user.data = { name: data.displayName, ...data }
+				}
+			})
+
+			return {
+				isAuthenticated,
+				toggleModal,
+				openModal,
+				closeModal,
+				signOut,
+				user,
+				userLogo
+			}
 		}
 	}
 </script>

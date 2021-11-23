@@ -5,8 +5,8 @@ import { auth } from '../../firebase'
 
 const getInitialTheme = () => {
 	if (
-		localStorage.getItem('theme') &&
-		localStorage.getItem('theme') === 'light'
+		!localStorage.getItem('theme') ||
+		(localStorage.getItem('theme') && localStorage.getItem('theme') === 'light')
 	) {
 		return null
 	} else {

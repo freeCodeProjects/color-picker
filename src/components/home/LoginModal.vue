@@ -46,6 +46,10 @@
 	} from '@vicons/ionicons5'
 	import { signIn } from '../../../firebase/auth'
 	import { useMessage } from 'naive-ui'
+	import { User } from '../../../firebase/models'
+	import { ref, reactive } from 'vue'
+	import { serverTimestamp } from 'firebase/firestore'
+
 	export default {
 		components: {
 			GithubIcon,
@@ -60,13 +64,35 @@
 		emits: ['closeModal'],
 		setup(props, { emit }) {
 			const message = useMessage()
+			const currUser = new User()
 
 			const login = async (provider) => {
 				const result = await signIn(provider).catch((error) => {
 					console.error('user sign in: ', error.message)
 					message.error(error.message)
 				})
+
 				if (result) {
+					const userId = result.user.uid
+					currUser.id = userId
+
+					//create user document for new user.
+					if (result._tokenResponse?.isNewUser) {
+						currUser.name = result.user.displayName
+						currUser.email = result.user.email
+						currUser.photoURL = result.user.photoURL
+
+						await currUser.save('add').catch((error) => {
+							console.error('create user doc: ', error.message)
+						})
+					}
+
+					//update last logged In time
+					currUser.lastLoginAt = serverTimestamp()
+					await currUser.save().catch((error) => {
+						console.error('user last login update: ', error.message)
+					})
+
 					emit('closeModal')
 				}
 			}
