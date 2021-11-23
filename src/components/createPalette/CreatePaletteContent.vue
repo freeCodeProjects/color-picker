@@ -13,9 +13,15 @@
 				<template #item="{ element: color }">
 					<div class="color" :style="`background: ${color.value}`">
 						<div class="color__content">
-							<n-ellipsis style="max-width: 80%">
-								<span class="color__content__name">{{ color.name }}</span>
-							</n-ellipsis>
+							<div
+								class="color__content__name"
+								:style="`color: ${color.value}`"
+							>
+								<n-ellipsis style="max-width: 8rem">
+									{{ color.name }}
+								</n-ellipsis>
+							</div>
+
 							<n-button
 								circle
 								@click="$emit('deleteColor', color.order)"
@@ -101,8 +107,10 @@
 		justify-content: space-between;
 
 		&__name {
-			color: white;
 			text-transform: uppercase;
+			font-size: 1rem;
+			padding: 0.25rem 0.5rem;
+			mix-blend-mode: difference;
 		}
 	}
 
