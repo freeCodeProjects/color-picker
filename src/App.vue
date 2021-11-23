@@ -11,7 +11,7 @@
 <script>
 	import { provide } from 'vue'
 	import ThemeButton from './components/ui/ThemeButton.vue'
-	import store from './store/theme'
+	import store from './store'
 
 	export default {
 		components: { ThemeButton },
