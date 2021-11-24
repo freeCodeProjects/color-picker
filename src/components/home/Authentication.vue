@@ -34,7 +34,7 @@
 
 <script>
 	import { CaretDown } from '@vicons/ionicons5'
-	import { ref, reactive, inject, watch } from 'vue'
+	import { ref, reactive, inject, watch, onMounted } from 'vue'
 	import LoginModal from './LoginModal.vue'
 	import { logout } from '../../../firebase/auth'
 	import { useMessage } from 'naive-ui'
@@ -67,12 +67,20 @@
 				}
 			}
 
-			watch(userData, () => {
+			const initUser = () => {
 				if (userData.value) {
 					const data = userData.value
 					user.id = data.uid
 					user.data = { name: data.displayName, ...data }
 				}
+			}
+
+			watch(userData, () => {
+				initUser()
+			})
+
+			onMounted(() => {
+				initUser()
 			})
 
 			return {
