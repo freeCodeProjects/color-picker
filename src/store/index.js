@@ -17,7 +17,9 @@ const getInitialTheme = () => {
 const store = () => {
 	const theme = ref(getInitialTheme())
 	const userData = ref(JSON.parse(localStorage.getItem('userData')) || null)
-	const isAuthenticated = ref(localStorage.getItem('isAuthenticated') || false)
+	const isAuthenticated = ref(
+		JSON.parse(localStorage.getItem('isAuthenticated')) || false
+	)
 
 	const toggleTheme = () => {
 		if (theme.value) {

@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '../store'
 const Home = () => import('./../views/Home.vue')
 const Palette = () => import('./../views/Palette.vue')
 const PaletteDetail = () => import('./../components/palette/PaletteDetail.vue')
 const PaletteColor = () => import('./../components/palette/PaletteColor.vue')
 const CreatePalette = () => import('./../views/CreatePalette.vue')
+
+const { isAuthenticated } = store()
 
 const routes = [
 	{
@@ -34,13 +37,22 @@ const routes = [
 	{
 		path: '/create',
 		name: 'CreatePalette',
-		component: CreatePalette
+		component: CreatePalette,
+		meta: { requiresAuth: true }
 	}
 ]
 
 const router = createRouter({
 	history: createWebHistory(),
 	routes
+})
+
+router.beforeEach((to, from) => {
+	if (to.meta.requiresAuth && !isAuthenticated.value) {
+		return {
+			path: '/'
+		}
+	}
 })
 
 export default router
