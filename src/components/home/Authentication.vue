@@ -11,11 +11,12 @@
 			<n-popover trigger="hover" placement="bottom-end">
 				<template #trigger>
 					<div class="user-info">
-						<n-avatar
-							size="large"
+						<img
+							class="user-info__avatar"
 							:src="user.photoURL"
-							:fallback-src="userLogo"
-							round
+							@error="defaultPhotoURL"
+							referrerpolicy="no-referrer"
+							alt="user avatar"
 						/>
 						<n-icon size="16">
 							<CaretDown />
@@ -75,6 +76,10 @@
 				}
 			}
 
+			const defaultPhotoURL = (e) => {
+				e.target.src = userLogo
+			}
+
 			watch(userData, () => {
 				initUser()
 			})
@@ -90,7 +95,8 @@
 				closeModal,
 				signOut,
 				user,
-				userLogo
+				userLogo,
+				defaultPhotoURL
 			}
 		}
 	}
@@ -102,6 +108,12 @@
 		align-items: center;
 		justify-content: center;
 		gap: var(--space-1);
+
+		&__avatar {
+			height: 2.5rem;
+			width: 2.5rem;
+			border-radius: 50%;
+		}
 	}
 
 	.user-info__popover {
