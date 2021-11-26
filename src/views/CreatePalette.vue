@@ -1,7 +1,7 @@
 <template>
 	<div class="layout">
 		<CreatePaletteHeader
-			@savePalette="savePalette"
+			@openSaveModal="showSaveModal = !showSaveModal"
 			:disableSaveButton="disableSaveButton"
 		/>
 		<n-layout class="layout2" has-sider>
@@ -21,18 +21,21 @@
 		<SavePaletteModal
 			:showSaveModal="showSaveModal"
 			@closeModal="showSaveModal = !showSaveModal"
+			@savePalette="savePalette"
 		/>
 	</div>
 </template>
 
 <script>
-	import { ref, watch, computed, defineAsyncComponent } from 'vue'
-	import { NLayout } from 'naive-ui'
+	import { ref, computed, defineAsyncComponent } from 'vue'
+	import { NLayout, useMessage } from 'naive-ui'
 	import CreatePaletteHeader from '../components/createPalette/CreatePaletteHeader.vue'
 	import CreatePaletteSidebar from '../components/createPalette/CreatePaletteSidebar.vue'
 	import CreatePaletteContent from '../components/createPalette/CreatePaletteContent.vue'
 	import { generateInitialPalette, getRandomColor } from '../utils/seedColors'
-	import { useRoute } from 'vue-router'
+	import { useRoute, useRouter } from 'vue-router'
+	import { Palette } from '../../firebase/models'
+
 	const SavePaletteModal = defineAsyncComponent(() =>
 		import('../components/createPalette/SavePaletteModal.vue')
 	)
@@ -47,25 +50,16 @@
 		setup() {
 			const colors = ref([])
 			const route = useRoute()
-			const disableForm = ref(false)
+			const router = useRouter()
 			const showSaveModal = ref(false)
+			const message = useMessage()
 
-			const disableSaveButton = computed(() => colors.value == 0)
+			const disableSaveButton = computed(() => colors.value === 0)
+			const disableForm = computed(() => colors.value.length >= 20)
 
 			if (route.name === 'CreatePalette') {
 				colors.value = generateInitialPalette()
 			}
-
-			watch(
-				() => [...colors.value],
-				(newValue) => {
-					if (colors.value.length === 20) {
-						disableForm.value = true
-					} else {
-						disableForm.value = false
-					}
-				}
-			)
 
 			const addColor = (color, name) => {
 				colors.value.push({ name, value: color })
@@ -98,8 +92,20 @@
 				colors.value = tempColors
 			}
 
-			const savePalette = () => {
-				showSaveModal.value = !showSaveModal.value
+			const savePalette = async (data) => {
+				const { name, emoji } = data
+				const palette = new Palette()
+				palette.paletteName = name.trim()
+				palette.emoji = emoji
+				palette.colors = colors.value
+				try {
+					await palette.save('add')
+					message.success('Palette Added!')
+					router.push({ name: 'Home' })
+				} catch (error) {
+					console.log('Failed to save palette : ', error)
+					message.error(error)
+				}
 			}
 
 			return {

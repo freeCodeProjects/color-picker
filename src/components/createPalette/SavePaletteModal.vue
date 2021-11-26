@@ -66,7 +66,7 @@
 				default: false
 			}
 		},
-		emits: ['closeModal'],
+		emits: ['savePalette', 'closeModal'],
 		setup(props, { emit }) {
 			const emojiIndex = new EmojiIndex(data)
 			const formRef = ref(null)
@@ -78,8 +78,8 @@
 					required: true,
 					trigger: 'blur',
 					validator: (rule, value) => {
-						if (value.trim().length < 3) {
-							return new Error('Name must be atleast 3 characters long.')
+						if (value.trim().length < 5) {
+							return new Error('Name must be atleast 5 characters long.')
 						}
 					}
 				},
@@ -110,8 +110,8 @@
 			}
 
 			const submitForm = () => {
+				emit('savePalette', formValue.value)
 				formValue.value = { name: '', emoji: '' }
-				emit('closeModal')
 			}
 
 			return {

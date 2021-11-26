@@ -3,11 +3,11 @@
 		<Logo />
 		<n-button
 			:disabled="disableSaveButton"
-			@click="$emit('savePalette')"
+			@click="$emit('openSaveModal')"
 			type="primary"
-    >
-      Save
-    </n-button>
+		>
+			Save
+		</n-button>
 	</Header>
 </template>
 <script>
@@ -22,6 +22,6 @@
 				default: false
 			}
 		},
-		emits: ['savePalette']
+		emits: ['openSaveModal']
 	}
 </script>
