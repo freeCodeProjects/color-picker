@@ -20,6 +20,7 @@
 		</n-layout>
 		<SavePaletteModal
 			:showSaveModal="showSaveModal"
+			:loading="formLoading"
 			@closeModal="showSaveModal = !showSaveModal"
 			@savePalette="savePalette"
 		/>
@@ -49,9 +50,11 @@
 		},
 		setup() {
 			const colors = ref([])
+			const showSaveModal = ref(false)
+			const formLoading = ref(false)
+
 			const route = useRoute()
 			const router = useRouter()
-			const showSaveModal = ref(false)
 			const message = useMessage()
 
 			const disableSaveButton = computed(() => colors.value === 0)
@@ -93,6 +96,7 @@
 			}
 
 			const savePalette = async (data) => {
+				formLoading.value = true
 				const { name, emoji } = data
 				const palette = new Palette()
 				palette.paletteName = name.trim()
@@ -103,8 +107,10 @@
 					message.success('Palette Added!')
 					router.push({ name: 'Home' })
 				} catch (error) {
-					console.log('Failed to save palette : ', error)
-					message.error(error)
+					console.log('Failed to save palette.', error)
+					message.error('Failed to save palette.')
+				} finally {
+					formLoading.value = false
 				}
 			}
 
@@ -118,7 +124,8 @@
 				reArrangeColor,
 				showSaveModal,
 				disableSaveButton,
-				savePalette
+				savePalette,
+				formLoading
 			}
 		}
 	}

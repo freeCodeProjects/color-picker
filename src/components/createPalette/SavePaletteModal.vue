@@ -35,6 +35,8 @@
 					@click="handleValidateClick"
 					type="primary"
 					style="margin-top: 1rem"
+					:disabled="loading"
+					:loading="loading"
 				>
 					Save
 				</n-button>
@@ -62,6 +64,10 @@
 		},
 		props: {
 			showSaveModal: {
+				type: Boolean,
+				default: false
+			},
+			loading: {
 				type: Boolean,
 				default: false
 			}
@@ -111,7 +117,6 @@
 
 			const submitForm = () => {
 				emit('savePalette', formValue.value)
-				formValue.value = { name: '', emoji: '' }
 			}
 
 			return {
