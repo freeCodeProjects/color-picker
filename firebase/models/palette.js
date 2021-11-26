@@ -5,7 +5,8 @@ import {
 	collection,
 	query,
 	where,
-	getDocs
+	getDocs,
+	getDoc
 } from 'firebase/firestore'
 import { db } from '..'
 import User from './user'
@@ -30,6 +31,22 @@ export default class Palette {
 					docs.push({ id: doc.id, ...doc.data() })
 				})
 				resolve(docs)
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
+
+	static getById = (id) => {
+		const docRef = doc(db, 'palettes', id)
+		return new Promise(async (resolve, reject) => {
+			try {
+				const docSnap = await getDoc(docRef)
+				if (docSnap.exists()) {
+					resolve({ id: docSnap.id, ...docSnap.data() })
+				} else {
+					resolve(null)
+				}
 			} catch (error) {
 				reject(error)
 			}

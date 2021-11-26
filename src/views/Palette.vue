@@ -1,10 +1,19 @@
 <template>
 	<div class="layout">
-		<PaletteHeader />
-		<n-layout-content>
-			<router-view :palette="colorPalette" :id="id"></router-view>
+		<PaletteHeader :loading="loading" :error="error"/>
+		<div v-if="loading" class="loader"><n-spin size="large" /></div>
+		<n-text type="error" v-else-if="error" class="error">{{ error }}</n-text>
+		<n-layout-content v-else>
+			<router-view
+				:palette="colorPalette"
+				:id="id"
+				:category="category"
+			></router-view>
 		</n-layout-content>
-		<PaletteFooter :name="newPalette.paletteName" :emoji="newPalette.emoji" />
+		<PaletteFooter
+			:name="newPalette.paletteName || ''"
+			:emoji="newPalette.emoji || ''"
+		/>
 	</div>
 </template>
 
@@ -14,6 +23,7 @@
 	import { toRefs, ref, provide, watch } from 'vue'
 	import { seedColors as samplePalette } from '../utils/seedColors'
 	import { generatePalette } from '../utils/colorHelper'
+	import { Palette } from '../../firebase/models'
 
 	export default {
 		components: { PaletteHeader, PaletteFooter },
@@ -35,10 +45,32 @@
 			const colorFormat = ref(localStorage.getItem('colorFormat') || 'hex')
 			const colorPalette = ref({})
 			const newPalette = ref({})
+			const error = ref(null)
+			const loading = ref(false)
 
 			const fetchPalette = () => {
-				if (category.value === 'sample') {
+				if (category.value === 'private') {
+					fetchPrivatePalette()
+				} else {
 					fetchSamplePalette()
+				}
+			}
+
+			const fetchPrivatePalette = async () => {
+				try {
+					loading.value = true
+					const palette = await Palette.getById(id.value)
+					if (palette) {
+						newPalette.value = generatePalette(palette)
+						createColorPalette()
+						error.value = null
+					} else {
+						error.value = `Palette with id - ${id.value} doesn't exist.`
+					}
+				} catch (error) {
+					console.log('Failed to fetch palette', error)
+				} finally {
+					loading.value = false
 				}
 			}
 
@@ -48,6 +80,9 @@
 						newPalette.value = generatePalette(p)
 						createColorPalette()
 					}
+				}
+				if (Object.keys(newPalette.value).length === 0) {
+					error.value = `Palette with id:- ${id.value} doesn't exist.`
 				}
 			}
 
@@ -78,14 +113,20 @@
 				return shades
 			}
 
-			fetchPalette()
 			provide('colorScale', colorScale)
 			provide('colorFormat', colorFormat)
 			provide('getColorShades', getColorShades)
 
-			return { id, category, colorPalette, newPalette }
+			fetchPalette()
+
+			return { id, category, colorPalette, newPalette, loading, error }
 		}
 	}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	.error {
+		display: flex;
+		justify-content: center;
+	}
+</style>

@@ -1,8 +1,10 @@
 <template>
 	<Header>
 		<Logo />
-		<ColorScaleSlider v-if="!$route.params.colorId" />
-		<ColorFormatSelect />
+		<template v-if="!loading && !error">
+			<ColorScaleSlider v-if="!$route.params.colorId" />
+			<ColorFormatSelect />
+		</template>
 	</Header>
 </template>
 
@@ -13,6 +15,10 @@
 	import ColorScaleSlider from './ColorScaleSlider.vue'
 	export default {
 		components: { Header, Logo, ColorFormatSelect, ColorScaleSlider },
+		props: {
+			error: String | null,
+			loading: Boolean
+		},
 		setup() {}
 	}
 </script>

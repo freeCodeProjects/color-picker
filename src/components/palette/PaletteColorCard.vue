@@ -18,7 +18,7 @@
 					:to="{
 						name: 'PaletteColor',
 						params: { id, colorId: color.id },
-						query: { category: 'sample' }
+						query: { category }
 					}"
 				>
 					more
@@ -49,7 +49,8 @@
 			showMoreBtn: {
 				type: Boolean,
 				default: true
-			}
+			},
+			category: String
 		},
 		setup() {
 			const showCopyModal = ref(false)
@@ -123,6 +124,7 @@
 			padding: 0.25rem;
 			height: 2rem;
 			width: 5rem;
+			z-index: 2;
 		}
 	}
 

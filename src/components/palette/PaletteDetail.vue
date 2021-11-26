@@ -5,6 +5,7 @@
 			:color="color"
 			:id="id"
 			:key="color.id"
+			:category="category"
 		/>
 	</div>
 </template>
@@ -19,6 +20,10 @@
 				required: true
 			},
 			id: {
+				type: String,
+				required: true
+			},
+			category: {
 				type: String,
 				required: true
 			}

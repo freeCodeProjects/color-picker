@@ -2,7 +2,7 @@
 	<div v-if="!isAuthenticated" style="padding: 1rem">
 		<div><strong>Login</strong> to create or view own Palette.</div>
 	</div>
-	<div v-else-if="loader" class="loading"><n-spin size="large" /></div>
+	<div v-else-if="loading" class="loader"><n-spin size="large" /></div>
 	<div v-else-if="palettes.length > 1" class="palettes">
 		<PaletteCard
 			v-for="palette in palettes"
@@ -27,20 +27,20 @@
 		components: { PaletteCard },
 		setup() {
 			const palettes = ref([])
-			const loader = ref(false)
+			const loading = ref(false)
 
 			const isAuthenticated = inject('isAuthenticated')
 			const userData = inject('userData')
 
 			const fetchAllDocs = async () => {
 				if (isAuthenticated) {
-					loader.value = true
+					loading.value = true
 					try {
 						palettes.value = await Palette.getDocsByUserId(userData.value.uid)
 					} catch (error) {
 						console.log('Failed to fetch My palettes:', error)
 					} finally {
-						loader.value = false
+						loading.value = false
 					}
 				}
 			}
@@ -54,17 +54,10 @@
 			return {
 				palettes,
 				isAuthenticated,
-				loader
+				loading
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
-	.loading {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		justify-content: center;
-	}
-</style>
+<style lang="scss" scoped></style>

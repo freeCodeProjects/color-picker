@@ -1,4 +1,4 @@
-import { ref, onUnmounted } from 'vue'
+import { ref, watch } from 'vue'
 import { darkTheme } from 'naive-ui'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../firebase'
@@ -16,7 +16,7 @@ const getInitialTheme = () => {
 
 const store = () => {
 	const theme = ref(getInitialTheme())
-	const activeTab = ref('sample-palette')
+	const activeTab = ref(localStorage.getItem('activeTab') || 'sample-palette')
 	const userData = ref(JSON.parse(localStorage.getItem('userData')) || null)
 	const isAuthenticated = ref(
 		JSON.parse(localStorage.getItem('isAuthenticated')) || false
@@ -50,8 +50,8 @@ const store = () => {
 		}
 	})
 
-	onUnmounted(() => {
-		unsubscribe()
+	watch(activeTab, (newValue) => {
+		localStorage.setItem('activeTab', newValue)
 	})
 
 	return {
@@ -60,7 +60,8 @@ const store = () => {
 		isAuthenticated,
 		activeTab,
 		toggleTheme,
-		changeActiveTab
+		changeActiveTab,
+		unsubscribe
 	}
 }
 

@@ -5,6 +5,7 @@
 			:color="color"
 			:showMoreBtn="false"
 			:key="color.id"
+			:category="category"
 		/>
 		<n-config-provider :theme="theme" class="go-back" @click="$router.go(-1)">
 			<n-button>Go Back</n-button>
@@ -19,6 +20,9 @@
 
 	export default {
 		components: { PaletteColorCard },
+		props: {
+			category: String
+		},
 		setup() {
 			const route = useRoute()
 			const getShades = inject('getColorShades')

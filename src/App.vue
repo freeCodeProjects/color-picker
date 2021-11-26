@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import { provide } from 'vue'
+	import { onUnmounted, provide } from 'vue'
 	import ThemeButton from './components/ui/ThemeButton.vue'
 	import store from './store'
 
@@ -17,13 +17,25 @@
 		components: { ThemeButton },
 		setup() {
 			//initialize store
-			const { theme, isAuthenticated, userData, toggleTheme, activeTab, changeActiveTab } = store()
+			const {
+				theme,
+				isAuthenticated,
+				userData,
+				toggleTheme,
+				activeTab,
+				changeActiveTab,
+				unsubscribe
+			} = store()
 			provide('theme', theme)
 			provide('toggleTheme', toggleTheme)
 			provide('isAuthenticated', isAuthenticated)
 			provide('userData', userData)
 			provide('activeTab', activeTab)
 			provide('changeActiveTab', changeActiveTab)
+
+			onUnmounted(() => {
+				unsubscribe()
+			})
 
 			return {
 				theme
@@ -79,5 +91,12 @@
 	/* reset naive ui css */
 	.n-scrollbar > .n-scrollbar-rail.n-scrollbar-rail--vertical {
 		right: 0px;
+	}
+
+	.loader {
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
