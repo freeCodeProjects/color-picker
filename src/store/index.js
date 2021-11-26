@@ -16,6 +16,7 @@ const getInitialTheme = () => {
 
 const store = () => {
 	const theme = ref(getInitialTheme())
+	const activeTab = ref('sample-palette')
 	const userData = ref(JSON.parse(localStorage.getItem('userData')) || null)
 	const isAuthenticated = ref(
 		JSON.parse(localStorage.getItem('isAuthenticated')) || false
@@ -29,6 +30,10 @@ const store = () => {
 			theme.value = darkTheme
 			localStorage.setItem('theme', 'dark')
 		}
+	}
+
+	const changeActiveTab = (value) => {
+		activeTab.value = value
 	}
 
 	const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -53,7 +58,9 @@ const store = () => {
 		theme,
 		userData,
 		isAuthenticated,
-		toggleTheme
+		activeTab,
+		toggleTheme,
+		changeActiveTab
 	}
 }
 
