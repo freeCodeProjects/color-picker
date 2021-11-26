@@ -19,17 +19,19 @@
 </template>
 
 <script>
-	import store from '../../store'
 	import { Palette } from '../../../firebase/models'
-	import { ref, watch } from 'vue'
+	import { ref, watch, inject } from 'vue'
 	import PaletteCard from './PaletteCard.vue'
 
 	export default {
 		components: { PaletteCard },
 		setup() {
-			const { isAuthenticated, userData } = store()
 			const palettes = ref([])
 			const loader = ref(false)
+
+			const isAuthenticated = inject('isAuthenticated')
+			const userData = inject('userData')
+
 			const fetchAllDocs = async () => {
 				if (isAuthenticated) {
 					loader.value = true

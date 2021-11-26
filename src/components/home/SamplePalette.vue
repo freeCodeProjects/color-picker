@@ -20,11 +20,9 @@
 	export default {
 		components: { PaletteCard },
 		setup() {
-			console.log('tab-1')
 			return { palettes }
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

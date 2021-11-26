@@ -7,15 +7,17 @@
 				class="tabs"
 				tab-style="flex:0"
 				pane-style="flex:1; overflow: auto; padding: 0"
+				:value="activeTab"
+				@update:value="(value) => changeActiveTab(value)"
 			>
 				<n-tab-pane
 					name="sample-palette"
 					tab="Sample Palette"
-					display-directive="show"
+					display-directive="show:lazy"
 				>
 					<SamplePalette />
 				</n-tab-pane>
-				<n-tab-pane name="my-palette" tab="My Palette">
+				<n-tab-pane name="private-palette" tab="My Palette">
 					<MyPalette />
 				</n-tab-pane>
 			</n-tabs>
@@ -24,10 +26,20 @@
 </template>
 
 <script>
+	import { inject } from 'vue'
 	import MyPalette from './MyPalette.vue'
 	import SamplePalette from './SamplePalette.vue'
 	export default {
-		components: { SamplePalette, MyPalette }
+		components: { SamplePalette, MyPalette },
+		setup() {
+			const activeTab = inject('activeTab')
+			const changeActiveTab = inject('changeActiveTab')
+
+			return {
+				activeTab,
+				changeActiveTab
+			}
+		}
 	}
 </script>
 
