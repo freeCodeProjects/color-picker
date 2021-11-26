@@ -3,7 +3,7 @@
 		:to="{
 			name: 'PaletteDetail',
 			params: { id },
-			query: { category: 'sample' }
+			query: { category: category }
 		}"
 	>
 		<n-card hoverable size="small">
@@ -23,21 +23,13 @@
 			</div>
 			<template #action v-if="showAction">
 				<div class="palette-actions">
-					<n-button type="info">
+					<n-button size="small" type="info">
 						<template #icon>
 							<n-icon>
 								<OpenOutline />
 							</n-icon>
 						</template>
 						Update
-					</n-button>
-					<n-button type="error">
-						<template #icon>
-							<n-icon>
-								<TrashBinOutline />
-							</n-icon>
-						</template>
-						Delete
 					</n-button>
 				</div>
 			</template>
@@ -83,7 +75,7 @@
 		flex-wrap: wrap;
 		display: grid;
 		grid-template-columns: repeat(4, minmax(4rem, 1fr));
-		grid-auto-rows: 3rem;
+		grid-template-rows: repeat(5, 3rem);
 	}
 
 	.palette-info {
@@ -104,6 +96,6 @@
 	.palette-actions {
 		display: flex;
 		gap: 1rem;
-		justify-content: space-between;
+		justify-content: flex-end;
 	}
 </style>

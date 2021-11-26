@@ -1,4 +1,12 @@
-import { doc, setDoc, serverTimestamp, collection } from 'firebase/firestore'
+import {
+	doc,
+	setDoc,
+	serverTimestamp,
+	collection,
+	query,
+	where,
+	getDocs
+} from 'firebase/firestore'
 import { db } from '..'
 import User from './user'
 
@@ -10,6 +18,22 @@ export default class Palette {
 	constructor(id = '', data = {}) {
 		this.id = id
 		this.data = data
+	}
+
+	static getDocsByUserId = (userId) => {
+		const q = query(collection(db, 'palettes'), where('userId', '==', userId))
+		return new Promise(async (resolve, reject) => {
+			try {
+				const querySnapshot = await getDocs(q)
+				const docs = []
+				querySnapshot.forEach((doc) => {
+					docs.push({ id: doc.id, ...doc.data() })
+				})
+				resolve(docs)
+			} catch (error) {
+				reject(error)
+			}
+		})
 	}
 
 	save = (action = 'update') => {

@@ -27,10 +27,4 @@
 </script>
 
 <style lang="scss" scoped>
-	.palettes {
-		gap: 2rem;
-		padding: 1rem;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-	}
 </style>
