@@ -30,7 +30,10 @@ const routes = [
 			{
 				path: ':colorId',
 				name: 'PaletteColor',
-				component: PaletteColor
+				component: PaletteColor,
+				props: (route) => ({
+					colorId: route.params.colorId
+				})
 			}
 		]
 	},
@@ -38,6 +41,15 @@ const routes = [
 		path: '/create',
 		name: 'CreatePalette',
 		component: CreatePalette,
+		meta: { requiresAuth: true }
+	},
+	{
+		path: '/update/:id',
+		name: 'UpdatePalette',
+		component: CreatePalette,
+		props: (route) => ({
+			id: route.params.id
+		}),
 		meta: { requiresAuth: true }
 	}
 ]

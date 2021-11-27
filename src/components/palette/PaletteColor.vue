@@ -15,19 +15,19 @@
 
 <script>
 	import PaletteColorCard from './PaletteColorCard.vue'
-	import { inject } from 'vue'
-	import { useRoute } from 'vue-router'
+	import { inject, toRefs } from 'vue'
 
 	export default {
 		components: { PaletteColorCard },
 		props: {
-			category: String
+			category: String,
+			colorId: String
 		},
-		setup() {
-			const route = useRoute()
+		setup(props) {
+			const { colorId } = toRefs(props)
 			const getShades = inject('getColorShades')
 			const theme = inject('theme')
-			const shades = getShades(route.params.colorId)
+			const shades = getShades(colorId)
 
 			return { shades, theme }
 		}
