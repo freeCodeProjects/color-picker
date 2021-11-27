@@ -28,7 +28,7 @@
 </template>
 
 <script>
-	import { ref, computed, defineAsyncComponent } from 'vue'
+	import { ref, computed, defineAsyncComponent, toRefs } from 'vue'
 	import { NLayout, useMessage } from 'naive-ui'
 	import CreatePaletteHeader from '../components/createPalette/CreatePaletteHeader.vue'
 	import CreatePaletteSidebar from '../components/createPalette/CreatePaletteSidebar.vue'
@@ -48,7 +48,11 @@
 			SavePaletteModal,
 			NLayout
 		},
-		setup() {
+		props: {
+			id: String
+		},
+		setup(props) {
+			const { id } = toRefs(props)
 			const colors = ref([])
 			const showSaveModal = ref(false)
 			const formLoading = ref(false)

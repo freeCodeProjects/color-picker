@@ -45,5 +45,6 @@
 		justify-content: center;
 		align-items: center;
 		padding-bottom: 0.25rem;
+		z-index: 1;
 	}
 </style>

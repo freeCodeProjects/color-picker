@@ -33,7 +33,7 @@
 			const userData = inject('userData')
 
 			const fetchAllDocs = async () => {
-				if (isAuthenticated) {
+				if (isAuthenticated.value) {
 					loading.value = true
 					try {
 						palettes.value = await Palette.getDocsByUserId(userData.value.uid)
@@ -44,10 +44,11 @@
 					}
 				}
 			}
+
 			fetchAllDocs()
 
 			//watch for auth change when my palette is in view
-			watch(isAuthenticated, (newValue) => {
+			watch(isAuthenticated, () => {
 				fetchAllDocs()
 			})
 

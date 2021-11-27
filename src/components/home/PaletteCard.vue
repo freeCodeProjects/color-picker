@@ -1,12 +1,12 @@
 <template>
-	<router-link
-		:to="{
-			name: 'PaletteDetail',
-			params: { id },
-			query: { category: category }
-		}"
-	>
-		<n-card hoverable size="small">
+	<n-card hoverable size="small">
+		<router-link
+			:to="{
+				name: 'PaletteDetail',
+				params: { id },
+				query: { category: category }
+			}"
+		>
 			<div class="colors">
 				<span
 					class="color"
@@ -16,13 +16,17 @@
 				></span>
 			</div>
 			<div class="palette-info">
-				<n-ellipsis :tooltip="false">
-					<span class="palette-info__name">{{ name }}</span>
-				</n-ellipsis>
+				<n-text class="palette-info__name">
+					<n-ellipsis :tooltip="false">
+						{{ name }}
+					</n-ellipsis>
+				</n-text>
 				<span class="palette-info__emoji">{{ emoji }}</span>
 			</div>
-			<template #action v-if="showAction">
-				<div class="palette-actions">
+		</router-link>
+		<template #action v-if="showAction">
+			<div class="palette-actions">
+				<router-link :to="{ name: 'UpdatePalette', params: { id } }">
 					<n-button size="small" type="info">
 						<template #icon>
 							<n-icon>
@@ -31,10 +35,10 @@
 						</template>
 						Update
 					</n-button>
-				</div>
-			</template>
-		</n-card>
-	</router-link>
+				</router-link>
+			</div>
+		</template>
+	</n-card>
 </template>
 
 <script>
@@ -86,6 +90,7 @@
 
 		&__name {
 			font-size: 1.25rem;
+			width: 90%;
 		}
 
 		&__emoji {

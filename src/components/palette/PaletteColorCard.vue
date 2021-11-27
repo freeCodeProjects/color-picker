@@ -35,7 +35,7 @@
 
 <script>
 	import CopyColorModal from './CopyColorModal.vue'
-	import { ref, inject, watch } from 'vue'
+	import { ref, inject } from 'vue'
 	export default {
 		components: { CopyColorModal },
 		props: {
