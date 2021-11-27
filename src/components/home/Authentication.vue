@@ -8,7 +8,7 @@
 			<router-link :to="{ name: 'CreatePalette' }">
 				<n-button type="primary">Create Palette</n-button>
 			</router-link>
-			<n-popover trigger="hover" placement="bottom-end">
+			<n-popover trigger="click" placement="bottom-end">
 				<template #trigger>
 					<div class="user-info">
 						<img

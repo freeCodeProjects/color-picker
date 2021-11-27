@@ -155,7 +155,7 @@
 				try {
 					await Palette.delete(id.value)
 					message.success('Palette Deleted!')
-					router.push({ name: 'Home' })
+					router.replace({ name: 'Home' })
 				} catch (error) {
 					console.log('Failed to delete palette.', error)
 					message.error('Failed to delete palette.')

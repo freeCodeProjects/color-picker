@@ -19,14 +19,22 @@
 				>
 					Update
 				</n-button>
-				<n-button
-					:disabled="paletteLoading || deletePaletteLoading"
-					:loading="deletePaletteLoading"
-					@click="$emit('deletePalette')"
-					type="error"
+				<n-popconfirm
+					placement="bottom-end"
+					:show-icon="true"
+					@positive-click="$emit('deletePalette')"
 				>
-					Delete
-				</n-button>
+					<template #activator>
+						<n-button
+							:disabled="paletteLoading || deletePaletteLoading"
+							:loading="deletePaletteLoading"
+							type="error"
+						>
+							Delete
+						</n-button>
+					</template>
+					<n-text type="error">Permanently delete this palette.</n-text>
+				</n-popconfirm>
 			</n-space>
 		</template>
 	</Header>
