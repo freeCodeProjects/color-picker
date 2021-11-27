@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue'
 import { darkTheme } from 'naive-ui'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../../firebase'
+import { auth } from '@/firebase'
 
 const getInitialTheme = () => {
 	if (

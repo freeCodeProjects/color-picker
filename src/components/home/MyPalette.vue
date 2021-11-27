@@ -19,7 +19,7 @@
 </template>
 
 <script>
-	import { Palette } from '../../../firebase/models'
+	import { Palette } from '@/firebase/models'
 	import { ref, watch, inject } from 'vue'
 	import PaletteCard from './PaletteCard.vue'
 

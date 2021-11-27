@@ -41,7 +41,7 @@
 	import CreatePaletteContent from '../components/createPalette/CreatePaletteContent.vue'
 	import { generateInitialPalette, getRandomColor } from '../utils/seedColors'
 	import { useRoute, useRouter } from 'vue-router'
-	import { Palette } from '../../firebase/models'
+	import { Palette } from '@/firebase/models'
 
 	const SavePaletteModal = defineAsyncComponent(() =>
 		import('../components/createPalette/SavePaletteModal.vue')

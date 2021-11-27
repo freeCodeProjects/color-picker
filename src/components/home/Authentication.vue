@@ -37,9 +37,9 @@
 	import { CaretDown } from '@vicons/ionicons5'
 	import { ref, reactive, inject, watch, onMounted } from 'vue'
 	import LoginModal from './LoginModal.vue'
-	import { logout } from '../../../firebase/auth'
+	import { logout } from '@/firebase/auth'
 	import { useMessage } from 'naive-ui'
-	import { User } from '../../../firebase/models'
+	import { User } from '@/firebase/models'
 	import userLogo from '@/assets/user.svg'
 
 	export default {

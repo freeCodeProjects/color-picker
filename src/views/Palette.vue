@@ -1,6 +1,6 @@
 <template>
 	<div class="layout">
-		<PaletteHeader :loading="loading" :error="error"/>
+		<PaletteHeader :loading="loading" :error="error" />
 		<div v-if="loading" class="loader"><n-spin size="large" /></div>
 		<n-text type="error" v-else-if="error" class="error">{{ error }}</n-text>
 		<n-layout-content v-else>
@@ -23,7 +23,7 @@
 	import { toRefs, ref, provide, watch } from 'vue'
 	import { seedColors as samplePalette } from '../utils/seedColors'
 	import { generatePalette } from '../utils/colorHelper'
-	import { Palette } from '../../firebase/models'
+	import { Palette } from '@/firebase/models'
 
 	export default {
 		components: { PaletteHeader, PaletteFooter },

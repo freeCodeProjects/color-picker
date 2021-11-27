@@ -44,10 +44,9 @@
 		LogoGithub as GithubIcon,
 		LogoGoogle as GoogleIcon
 	} from '@vicons/ionicons5'
-	import { signIn } from '../../../firebase/auth'
+	import { signIn } from '@/firebase/auth'
 	import { useMessage } from 'naive-ui'
-	import { User } from '../../../firebase/models'
-	import { ref, reactive } from 'vue'
+	import { User } from '@/firebase/models'
 	import { serverTimestamp } from 'firebase/firestore'
 
 	export default {
