@@ -27,7 +27,7 @@
 			const { colorId } = toRefs(props)
 			const getShades = inject('getColorShades')
 			const theme = inject('theme')
-			const shades = getShades(colorId)
+			const shades = getShades(colorId.value)
 
 			return { shades, theme }
 		}

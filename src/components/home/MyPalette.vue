@@ -3,7 +3,7 @@
 		<div><strong>Login</strong> to create or view own Palette.</div>
 	</div>
 	<div v-else-if="loading" class="loader"><n-spin size="large" /></div>
-	<div v-else-if="palettes.length > 1" class="palettes">
+	<div v-else-if="palettes.length > 0" class="palettes">
 		<PaletteCard
 			v-for="palette in palettes"
 			:key="palette.id"

@@ -5,7 +5,7 @@
 			:style="`background-color: ${color[colorFormat]}`"
 		>
 			<div class="color__name" :style="`color: ${color[colorFormat]}`">
-				<n-ellipsis style="max-width: 12rem">{{ color.name }}</n-ellipsis>
+				<n-ellipsis style="max-width: 65%">{{ color.name }}</n-ellipsis>
 			</div>
 			<div
 				class="color__action fade-animation-parent cursor-pointer"
@@ -89,6 +89,7 @@
 	.color__name {
 		padding: 0.25rem 0.5rem;
 		mix-blend-mode: difference;
+		flex: 1;
 	}
 
 	.color__action {
