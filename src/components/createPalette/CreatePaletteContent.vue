@@ -1,6 +1,7 @@
 <template>
 	<n-layout-content content-style="overflow:auto">
-		<div class="colors">
+		<div v-if="loading" class="loader"><n-spin size="large" /></div>
+		<div v-else class="colors">
 			<draggable
 				v-model="colorsArray"
 				group="people"
@@ -17,7 +18,7 @@
 								class="color__content__name"
 								:style="`color: ${color.value}`"
 							>
-								<n-ellipsis style="max-width: 8rem">
+								<n-ellipsis style="max-width: 90%">
 									{{ color.name }}
 								</n-ellipsis>
 							</div>
@@ -52,6 +53,10 @@
 		props: {
 			colors: {
 				type: Array
+			},
+			loading: {
+				type: Boolean,
+				default: false
 			}
 		},
 		emits: ['deleteColor', 'reArrangeColor'],
@@ -107,6 +112,7 @@
 		justify-content: space-between;
 
 		&__name {
+			flex: 1;
 			text-transform: uppercase;
 			font-size: 1rem;
 			padding: 0.25rem 0.5rem;

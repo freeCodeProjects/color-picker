@@ -2,7 +2,11 @@
 	<div class="layout">
 		<CreatePaletteHeader
 			@openSaveModal="showSaveModal = !showSaveModal"
+			@deletePalette="deletePalette"
 			:disableSaveButton="disableSaveButton"
+			:paletteLoading="paletteLoading"
+			:deletePaletteLoading="deletePaletteLoading"
+			:action="action"
 		/>
 		<n-layout class="layout2" has-sider>
 			<CreatePaletteSidebar
@@ -14,11 +18,13 @@
 			/>
 			<CreatePaletteContent
 				:colors="colors"
+				:loading="paletteLoading"
 				@deleteColor="deleteColor"
 				@reArrangeColor="reArrangeColor"
 			/>
 		</n-layout>
 		<SavePaletteModal
+			:paletteInfo="paletteInfo"
 			:showSaveModal="showSaveModal"
 			:loading="formLoading"
 			@closeModal="showSaveModal = !showSaveModal"
@@ -56,16 +62,37 @@
 			const colors = ref([])
 			const showSaveModal = ref(false)
 			const formLoading = ref(false)
+			const paletteLoading = ref(false)
+			const deletePaletteLoading = ref(false)
+			const paletteInfo = ref({ name: '', emoji: '' })
 
 			const route = useRoute()
 			const router = useRouter()
 			const message = useMessage()
+			const action = route.name
 
-			const disableSaveButton = computed(() => colors.value === 0)
+			const disableSaveButton = computed(() => colors.value.length === 0)
 			const disableForm = computed(() => colors.value.length >= 20)
 
-			if (route.name === 'CreatePalette') {
-				colors.value = generateInitialPalette()
+			const init = async () => {
+				if (action === 'CreatePalette') {
+					colors.value = generateInitialPalette()
+				} else {
+					paletteLoading.value = true
+					try {
+						const palette = await Palette.getById(id.value)
+						colors.value = palette.colors
+						paletteInfo.value = {
+							name: palette.paletteName,
+							emoji: palette.emoji
+						}
+					} catch (error) {
+						console.log('Failed to fetch palette.')
+						message.error('Failed to fetch palette.')
+					} finally {
+						paletteLoading.value = false
+					}
+				}
 			}
 
 			const addColor = (color, name) => {
@@ -102,13 +129,18 @@
 			const savePalette = async (data) => {
 				formLoading.value = true
 				const { name, emoji } = data
-				const palette = new Palette()
+				const palette = new Palette(id.value || '')
 				palette.paletteName = name.trim()
 				palette.emoji = emoji
 				palette.colors = colors.value
 				try {
-					await palette.save('add')
-					message.success('Palette Added!')
+					if (action === 'CreatePalette') {
+						await palette.save('add')
+						message.success('Palette Added!')
+					} else {
+						await palette.save()
+						message.info('Palette Updated!')
+					}
 					router.push({ name: 'Home' })
 				} catch (error) {
 					console.log('Failed to save palette.', error)
@@ -117,6 +149,22 @@
 					formLoading.value = false
 				}
 			}
+
+			const deletePalette = async () => {
+				deletePaletteLoading.value = true
+				try {
+					await Palette.delete(id.value)
+					message.success('Palette Deleted!')
+					router.push({ name: 'Home' })
+				} catch (error) {
+					console.log('Failed to delete palette.', error)
+					message.error('Failed to delete palette.')
+				} finally {
+					deletePaletteLoading.value = false
+				}
+			}
+
+			init()
 
 			return {
 				addColor,
@@ -129,7 +177,12 @@
 				showSaveModal,
 				disableSaveButton,
 				savePalette,
-				formLoading
+				formLoading,
+				paletteLoading,
+				paletteInfo,
+				action,
+				deletePalette,
+				deletePaletteLoading
 			}
 		}
 	}

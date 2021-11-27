@@ -6,7 +6,8 @@ import {
 	query,
 	where,
 	getDocs,
-	getDoc
+	getDoc,
+	deleteDoc
 } from 'firebase/firestore'
 import { db } from '..'
 import User from './user'
@@ -47,6 +48,18 @@ export default class Palette {
 				} else {
 					resolve(null)
 				}
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
+
+	static delete = (id) => {
+		const docRef = doc(db, 'palettes', id)
+		return new Promise(async (resolve, reject) => {
+			try {
+				await deleteDoc(docRef)
+				resolve('sucess')
 			} catch (error) {
 				reject(error)
 			}

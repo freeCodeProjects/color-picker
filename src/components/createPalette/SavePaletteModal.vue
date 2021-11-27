@@ -53,7 +53,7 @@
 </template>
 
 <script>
-	import { ref } from 'vue'
+	import { ref, toRefs } from 'vue'
 	import data from 'emoji-mart-vue-fast/data/all.json'
 	import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src'
 	import 'emoji-mart-vue-fast/css/emoji-mart.css'
@@ -70,13 +70,15 @@
 			loading: {
 				type: Boolean,
 				default: false
-			}
+			},
+			paletteInfo: Object
 		},
 		emits: ['savePalette', 'closeModal'],
 		setup(props, { emit }) {
+			const { paletteInfo } = toRefs(props)
 			const emojiIndex = new EmojiIndex(data)
 			const formRef = ref(null)
-			const formValue = ref({ name: '', emoji: '' })
+			const formValue = ref(paletteInfo)
 
 			const rules = {
 				name: {
